@@ -4,6 +4,8 @@
 
 NicheAI is a revolutionary platform combining quantum-powered AI companions with gasless blockchain technology. Meet Aurora (emotional AI) and Atlas (strategic AI) - your intelligent companions powered by quantum computing and secured by the LUXBIN Chain.
 
+🌐 **Live Demo**: [https://luxbin-app.vercel.app](https://luxbin-app.vercel.app)
+
 ## 🌟 What is NicheAI?
 
 NicheAI is the application layer of a comprehensive quantum-blockchain ecosystem that includes:
@@ -59,16 +61,22 @@ This repo is part of a larger ecosystem. Explore the full stack:
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Try the Live Demo
 
-\`\`\`bash
+Visit **[https://luxbin-app.vercel.app](https://luxbin-app.vercel.app)** to experience NicheAI right now!
+
+### Local Development
+
+#### Prerequisites
+
+```bash
 node >= 18.0.0
 npm >= 9.0.0
-\`\`\`
+```
 
-### Installation
+#### Installation
 
-\`\`\`bash
+```bash
 # Clone the repository
 git clone https://github.com/mermaidnicheboutique-code/nicheai.git
 cd nicheai
@@ -82,18 +90,26 @@ cp .env.example .env
 
 # Run development server
 npm run dev
-\`\`\`
+```
 
-Visit \`http://localhost:3000\` to see the application.
+Open [http://localhost:3000](http://localhost:3000) in your browser for local development.
+
+### Deployment
+
+The project is deployed on Vercel. Push to `main` branch to automatically deploy:
+
+```bash
+git push origin main
+```
 
 ## 💝 Support This Project
 
 ### 💰 Crypto Donations (All Chains)
 
 **Smart Wallet Address:**
-\`\`\`
+```
 0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe
-\`\`\`
+```
 
 Accepts donations on:
 - ⚡ Ethereum (ETH, USDC, USDT, any ERC-20)
