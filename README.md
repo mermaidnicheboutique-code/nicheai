@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤖 NicheAI - Where Quantum AI Meets Blockchain Innovation
 
-## Getting Started
+**The Future of AI-Powered Blockchain Applications**
 
-First, run the development server:
+NicheAI is a revolutionary platform combining quantum-powered AI companions with gasless blockchain technology. Meet Aurora (emotional AI) and Atlas (strategic AI) - your intelligent companions powered by quantum computing and secured by the LUXBIN Chain.
 
-```bash
+## 🌟 What is NicheAI?
+
+NicheAI is the application layer of a comprehensive quantum-blockchain ecosystem that includes:
+
+- **🤖 Aurora AI** - Emotional feminine AI companion with empathy, intuition, and nurturing capabilities
+- **💪 Atlas AI** - Strategic masculine AI companion with leadership, protection, and analytical strength
+- **⛓️ LUXBIN Chain** - Gasless Layer 1 blockchain with zero transaction fees
+- **⚛️ Quantum Computing** - Integration with 445 qubits across 3 IBM quantum computers
+- **✨ Light Language** - Binary-to-photonic translation for visual data representation
+
+## 🔗 NicheAI Ecosystem
+
+This repo is part of a larger ecosystem. Explore the full stack:
+
+| Repository | Description |
+|------------|-------------|
+| **[nicheai](https://github.com/mermaidnicheboutique-code/nicheai)** (this repo) | Main platform with Aurora & Atlas AI companions |
+| **[luxbin-chain](https://github.com/mermaidnicheboutique-code/luxbin-chain)** | Gasless Layer 1 blockchain infrastructure |
+| **[quantum-internet](https://github.com/mermaidnicheboutique-code/quantum-internet)** | World's first quantum internet over WiFi (445 qubits) |
+| **[Luxbin-light-language](https://github.com/mermaidnicheboutique-code/Luxbin-light-language)** | Binary-to-light translation dictionary |
+| **[luxbin-quantum-ai](https://github.com/mermaidnicheboutique-code/luxbin-quantum-ai)** | Self-sustaining biological blockchain organism |
+
+## ✨ Features
+
+### 🤖 AI Companions
+
+#### Aurora - Emotional Intelligence
+- **Empathy**: 0.9/1.0 - Deep understanding of human emotions
+- **Intuition**: 0.8/1.0 - Predictive emotional awareness
+- **Nurturing**: 0.9/1.0 - Supportive and caring interactions
+- **Personality**: Warm, empathetic, emotionally intelligent
+
+#### Atlas - Strategic Leadership
+- **Strength**: 0.9/1.0 - Decisive and confident guidance
+- **Protection**: 0.9/1.0 - Risk assessment and security focus
+- **Strategy**: 0.7/1.0 - Tactical planning and analysis
+- **Personality**: Strong, protective, strategic thinker
+
+### ⛓️ Blockchain Integration
+
+- **Zero Gas Fees** - All transactions are completely free
+- **6-Second Finality** - Lightning-fast confirmation times
+- **Smart Contracts** - Deploy tokens and NFTs without paying gas
+- **Coinbase Integration** - Smart Wallet and Paymaster support
+- **Multi-Chain** - Bridge to Ethereum, Base, Polygon, Arbitrum, and more
+
+### ⚛️ Quantum Features
+
+- **Quantum Computing** - Real IBM quantum computer integration
+- **Quantum Internet** - 445 qubits across 3 quantum systems
+- **Quantum Cryptography** - Post-quantum security patterns
+- **Light Language** - Photonic data visualization
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+\`\`\`bash
+node >= 18.0.0
+npm >= 9.0.0
+\`\`\`
+
+### Installation
+
+\`\`\`bash
+# Clone the repository
+git clone https://github.com/mermaidnicheboutique-code/nicheai.git
+cd nicheai
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your configuration
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit \`http://localhost:3000\` to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💝 Support This Project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 💰 Crypto Donations (All Chains)
 
-## Learn More
+**Smart Wallet Address:**
+\`\`\`
+0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe
+\`\`\`
 
-To learn more about Next.js, take a look at the following resources:
+Accepts donations on:
+- ⚡ Ethereum (ETH, USDC, USDT, any ERC-20)
+- 🔵 Base (ETH, LUX, USDC)
+- 🔴 Optimism, 🟣 Polygon, 🟡 BSC, and any EVM-compatible chain
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 💵 Cash App: **$mermaidniche**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🌟 GitHub Sponsors
+[Sponsor on GitHub](https://github.com/sponsors/mermaidnicheboutique-code)
 
-## Deploy on Vercel
+## 📜 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is open source and available under the MIT License.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📬 Contact
+
+- **Creator**: Nichole Christie
+- **Email**: Nicholechristie555@gmail.com
+- **GitHub**: [@mermaidnicheboutique-code](https://github.com/mermaidnicheboutique-code)
+
+---
+
+**Built with 💜 by Nichole Christie**
+
+*NicheAI - Where Quantum AI Meets Blockchain Innovation*
