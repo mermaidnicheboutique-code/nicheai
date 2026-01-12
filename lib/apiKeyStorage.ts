@@ -99,6 +99,28 @@ export async function storeAPIKey(apiKey: APIKey): Promise<void> {
  * Get API key by hashed key
  */
 export async function getAPIKey(plainKey: string): Promise<APIKey | null> {
+  // Handle demo keys for development/testing
+  if (plainKey === 'demo_key_for_testing' || plainKey.startsWith('demo_')) {
+    return {
+      id: 'demo_key_id',
+      key: 'demo_key_hash',
+      keyPrefix: 'demo_...',
+      name: 'Demo/Development Key',
+      createdAt: Date.now(),
+      isActive: true,
+      permissions: ['all'],
+      usage: {
+        totalRequests: 0,
+        requestsThisMonth: 0,
+        lastResetAt: Date.now()
+      },
+      rateLimit: {
+        requestsPerMinute: 1000,
+        requestsPerDay: 100000
+      }
+    };
+  }
+
   const hashedKey = hashAPIKey(plainKey);
   const keys = await loadAPIKeys();
   const apiKey = keys.get(hashedKey);

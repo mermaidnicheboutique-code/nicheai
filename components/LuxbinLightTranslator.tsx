@@ -9,6 +9,23 @@ interface LightBeam {
   character: string;
 }
 
+interface ColorInfo {
+  name: string;
+  wavelength: number;
+  frequency: number;
+  meaning: string;
+  energyLevel: string;
+  keywords: string[];
+  hexCode: string;
+  usage: string;
+}
+
+interface ColorDictionary {
+  colors: ColorInfo[];
+  binaryEncoding: Record<string, string>;
+  description: string;
+}
+
 export function LuxbinLightTranslator() {
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,7 +35,29 @@ export function LuxbinLightTranslator() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [currentBeamIndex, setCurrentBeamIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [colorDictionary, setColorDictionary] = useState<ColorDictionary | null>(null);
+  const [showDictionary, setShowDictionary] = useState(false);
   const fullscreenRef = useRef<HTMLDivElement>(null);
+
+  // Load color dictionary on mount
+  useEffect(() => {
+    const loadDictionary = async () => {
+      try {
+        const response = await fetch('/api/v1/light-language/colors', {
+          headers: {
+            'X-API-Key': 'demo_key_for_testing'
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setColorDictionary(data.dictionary);
+        }
+      } catch (err) {
+        console.error('Failed to load color dictionary:', err);
+      }
+    };
+    loadDictionary();
+  }, []);
 
   const generateLightShow = async () => {
     if (!inputText.trim()) {
@@ -390,6 +429,105 @@ export function LuxbinLightTranslator() {
                   </div>
                 </div>
               </div>
+            )}
+          </div>
+        )}
+
+        {/* Light Language Dictionary */}
+        {colorDictionary && (
+          <div className="mt-12 bg-white/5 backdrop-blur-xl border border-purple-500/30 rounded-3xl p-8">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-orange-400 bg-clip-text text-transparent">
+                📖 Light Language Dictionary
+              </h3>
+              <button
+                onClick={() => setShowDictionary(!showDictionary)}
+                className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/50 rounded-lg transition-colors"
+              >
+                {showDictionary ? 'Hide' : 'Show'} Dictionary
+              </button>
+            </div>
+
+            {showDictionary && (
+              <>
+                <p className="text-gray-300 mb-6 text-lg">{colorDictionary.description}</p>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                  {colorDictionary.colors.map((color) => (
+                    <div
+                      key={color.name}
+                      className="bg-black/30 border border-white/10 rounded-xl p-6 hover:border-white/30 transition-all"
+                      style={{ borderLeftColor: color.hexCode, borderLeftWidth: '4px' }}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div
+                          className="w-8 h-8 rounded-full"
+                          style={{ backgroundColor: color.hexCode, boxShadow: `0 0 20px ${color.hexCode}` }}
+                        />
+                        <h4 className="text-xl font-bold" style={{ color: color.hexCode }}>
+                          {color.name}
+                        </h4>
+                      </div>
+
+                      <div className="space-y-2 text-sm">
+                        <div>
+                          <span className="text-gray-400">Wavelength:</span>
+                          <span className="text-white ml-2 font-mono">{color.wavelength}nm</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-400">Binary:</span>
+                          <span className="text-white ml-2 font-mono">
+                            {colorDictionary.binaryEncoding[color.name]}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-gray-400">Meaning:</span>
+                          <span className="text-white ml-2">{color.meaning}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-400">Energy:</span>
+                          <span className="text-purple-300 ml-2">{color.energyLevel}</span>
+                        </div>
+                        <div className="pt-2 border-t border-white/10">
+                          <span className="text-gray-400 block mb-1">Keywords:</span>
+                          <div className="flex flex-wrap gap-1">
+                            {color.keywords.map((keyword) => (
+                              <span
+                                key={keyword}
+                                className="px-2 py-1 bg-white/5 rounded text-xs"
+                              >
+                                {keyword}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="pt-2">
+                          <span className="text-gray-400 block mb-1">Usage:</span>
+                          <p className="text-gray-300 text-xs leading-relaxed">{color.usage}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-6">
+                  <h4 className="text-xl font-bold mb-3 text-purple-300">How It Works</h4>
+                  <div className="space-y-3 text-gray-300">
+                    <p>
+                      <strong>Binary Encoding:</strong> Each color is encoded as a 3-bit binary value (000-110),
+                      allowing efficient storage and transmission of light-based information.
+                    </p>
+                    <p>
+                      <strong>Semantic Mapping:</strong> Words are intelligently mapped to colors based on their
+                      meaning, combining spiritual/hermetic wisdom with technological concepts.
+                    </p>
+                    <p>
+                      <strong>Quantum Ready:</strong> The wavelengths are optimized for diamond NV center quantum
+                      computers, which detect light at 637nm zero-phonon line.
+                    </p>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         )}

@@ -36,11 +36,46 @@ export default function QuantumInternetPage() {
   const [quantumStatus, setQuantumStatus] = useState<QuantumStatus | null>(null);
 
   useEffect(() => {
-    // Fetch quantum blockchain status
-    fetch('/api/quantum-blockchain/status')
-      .then(res => res.json())
-      .then(data => setQuantumStatus(data))
-      .catch(err => console.error('Failed to fetch quantum status:', err));
+    // Fetch quantum internet status from new API
+    const fetchStatus = async () => {
+      try {
+        const response = await fetch('/api/quantum-internet/status');
+        const data = await response.json();
+
+        // Transform data to match component interface
+        const transformedData: QuantumStatus = {
+          network: {
+            status: data.networkStatus || 'online',
+            validators: data.computers?.map((computer: any) => ({
+              name: computer.name,
+              qubits: computer.qubits,
+              status: computer.status,
+              entangledWith: computer.entangledWith || [],
+            })) || [],
+            totalValidators: data.computers?.length || 3,
+          },
+          blockchain: {
+            latestBlock: null,
+            totalBlocks: 0,
+          },
+          quantum: {
+            activeJobs: data.activeOperations || 0,
+            totalQubitsAvailable: data.totalQubits || 445,
+            luxbinEncoding: true,
+          },
+        };
+
+        setQuantumStatus(transformedData);
+      } catch (err) {
+        console.error('Failed to fetch quantum status:', err);
+      }
+    };
+
+    fetchStatus();
+
+    // Refresh status every 5 seconds
+    const interval = setInterval(fetchStatus, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

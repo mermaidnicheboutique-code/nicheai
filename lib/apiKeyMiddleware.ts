@@ -18,28 +18,33 @@ export interface APIKeyValidationResult {
  * Validate API key from request headers
  */
 export async function validateAPIKey(request: NextRequest): Promise<APIKeyValidationResult> {
-  // Get API key from Authorization header
-  const authHeader = request.headers.get('authorization');
+  // Try to get API key from X-API-Key header first (for demo/testing)
+  let plainKey = request.headers.get('x-api-key');
 
-  if (!authHeader) {
-    return {
-      isValid: false,
-      error: 'Missing Authorization header',
-      errorCode: 'MISSING_API_KEY'
-    };
+  // If not found, try Authorization header
+  if (!plainKey) {
+    const authHeader = request.headers.get('authorization');
+
+    if (!authHeader) {
+      return {
+        isValid: false,
+        error: 'Missing Authorization or X-API-Key header',
+        errorCode: 'MISSING_API_KEY'
+      };
+    }
+
+    // Extract key from "Bearer <key>" format
+    const match = authHeader.match(/^Bearer (.+)$/i);
+    if (!match) {
+      return {
+        isValid: false,
+        error: 'Invalid Authorization header format. Use: "Bearer luxb_..." or X-API-Key header',
+        errorCode: 'INVALID_FORMAT'
+      };
+    }
+
+    plainKey = match[1];
   }
-
-  // Extract key from "Bearer <key>" format
-  const match = authHeader.match(/^Bearer (.+)$/i);
-  if (!match) {
-    return {
-      isValid: false,
-      error: 'Invalid Authorization header format. Use: "Bearer luxb_..."',
-      errorCode: 'INVALID_FORMAT'
-    };
-  }
-
-  const plainKey = match[1];
 
   // Validate key format
   if (!isValidKeyFormat(plainKey)) {

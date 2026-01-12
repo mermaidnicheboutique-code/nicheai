@@ -74,6 +74,27 @@ export default function Home() {
               </Link>
             ))}
 
+            {/* Light Language Section Header */}
+            <div className="px-4 py-2 mt-4 text-xs font-bold text-orange-400 uppercase tracking-wider">
+              Light Language
+            </div>
+            {[
+              { name: "Light Translator", href: "/light-translator", icon: "✨", highlight: true, description: "Binary to Photonic" },
+              { name: "Lightshow", href: "/lightshow", icon: "🌈", highlight: true, description: "Blockchain Light" },
+            ].map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-orange-500/20 to-yellow-500/20 hover:from-orange-500/30 hover:to-yellow-500/30 border border-orange-500/30 transition-all text-sm font-medium shadow-lg"
+              >
+                <span className="text-xl">{link.icon}</span>
+                <div className="flex-1">
+                  <div>{link.name}</div>
+                  <div className="text-xs text-orange-300">{link.description}</div>
+                </div>
+              </Link>
+            ))}
+
             {/* Platform Section Header */}
             <div className="px-4 py-2 mt-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
               Platform
@@ -85,8 +106,6 @@ export default function Home() {
               { name: "Research", href: "/research", icon: "🔬" },
               { name: "Developers", href: "/developers", icon: "👨‍💻" },
               { name: "DNA Explorer", href: "/dna-explorer", icon: "🧬" },
-              { name: "Lightshow", href: "/lightshow", icon: "🌈" },
-              { name: "Translator", href: "/light-translator", icon: "✨" },
               { name: "Omnichain", href: "/omnichain-dna", icon: "🔗" },
               { name: "Chain Info", href: "#chain", icon: "⛓️" },
               { name: "Buy LUX", href: "#buy", icon: "💰" },
