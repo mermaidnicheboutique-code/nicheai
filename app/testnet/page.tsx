@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useSwitchChain } from "wagmi";
+import { useSwitchChain, useAccount, useBalance, useSendTransaction, useWaitForTransactionReceipt } from "wagmi";
+import { parseEther } from "viem";
 
 export default function TestnetPage() {
   const [isRunning, setIsRunning] = useState(false);
+  const [txTo, setTxTo] = useState("");
+  const [txAmount, setTxAmount] = useState("");
   const { switchChain } = useSwitchChain();
+  const { address, isConnected } = useAccount();
+  const { data: balance } = useBalance({ address });
+  const { sendTransaction, data: txHash, isPending } = useSendTransaction();
+  const { isSuccess } = useWaitForTransactionReceipt({ hash: txHash });
 
   const handleStartTestnet = () => {
     setIsRunning(true);
@@ -16,6 +23,14 @@ export default function TestnetPage() {
 
   const handleConnectNetwork = () => {
     switchChain({ chainId: 901 });
+  };
+
+  const handleSendTransaction = () => {
+    if (!txTo || !txAmount) return;
+    sendTransaction({
+      to: txTo as `0x${string}`,
+      value: parseEther(txAmount),
+    });
   };
 
   return (
@@ -112,6 +127,59 @@ export default function TestnetPage() {
               GitHub Repo
             </Link>
           </div>
+        </div>
+
+        {/* Wallet Features Section */}
+        <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl p-6 mb-8">
+          <h2 className="text-2xl font-bold mb-4 text-green-400">Wallet Features</h2>
+
+          {isConnected ? (
+            <div className="space-y-4">
+              <div className="bg-black/60 rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Account</h3>
+                <p className="text-sm break-all">{address}</p>
+                <p className="text-sm mt-2">
+                  Balance: {balance ? `${parseFloat(balance.formatted).toFixed(4)} ${balance.symbol}` : "Loading..."}
+                </p>
+              </div>
+
+              <div className="bg-black/60 rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Send Transaction</h3>
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder="Recipient Address (0x...)"
+                    value={txTo}
+                    onChange={(e) => setTxTo(e.target.value)}
+                    className="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-gray-400"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Amount (ETH)"
+                    value={txAmount}
+                    onChange={(e) => setTxAmount(e.target.value)}
+                    step="0.0001"
+                    className="w-full bg-black/40 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-gray-400"
+                  />
+                  <button
+                    onClick={handleSendTransaction}
+                    disabled={isPending || !txTo || !txAmount}
+                    className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 px-6 py-2 rounded-lg font-semibold transition-all"
+                  >
+                    {isPending ? "Sending..." : "Send Transaction"}
+                  </button>
+                </div>
+                {txHash && (
+                  <p className="text-sm mt-2">
+                    Transaction: <a href={`https://sepolia-optimism.etherscan.io/tx/${txHash}`} target="_blank" className="text-blue-400 hover:text-blue-300">{txHash.slice(0, 10)}...</a>
+                  </p>
+                )}
+                {isSuccess && <p className="text-green-400 text-sm mt-2">Transaction successful! 🎉</p>}
+              </div>
+            </div>
+          ) : (
+            <p className="text-gray-400">Connect your wallet to access advanced features</p>
+          )}
         </div>
       </div>
     </div>
