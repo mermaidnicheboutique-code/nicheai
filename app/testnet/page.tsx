@@ -23,7 +23,7 @@ export default function TestnetPage() {
 
         <div className="text-center mb-12">
           <img
-            src="/nicho-network-logo.jpg"
+            src="/niche-network-logo.jpg"
             alt="Niche Network Logo"
             className="w-32 h-32 mx-auto mb-6 rounded-full border-4 border-purple-400 shadow-lg"
           />
