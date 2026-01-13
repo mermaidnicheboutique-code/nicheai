@@ -23,10 +23,10 @@ export default function TestnetPage() {
 
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-            Optimism Local Testnet
+            Niche Network
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Run your own Optimism Layer 2 testnet locally for development and testing
+            Run your own Niche Network (powered by Optimism) locally for development and testing
           </p>
         </div>
 
@@ -68,7 +68,7 @@ export default function TestnetPage() {
               <h3 className="font-semibold mb-2">Network</h3>
               <div className="bg-black/60 rounded-lg p-3 font-mono text-sm">
                 RPC URL: http://localhost:8545<br/>
-                Chain ID: 420 (Optimism Goerli)<br/>
+                Chain ID: 420 (Niche Network)<br/>
                 Currency: ETH
               </div>
             </div>

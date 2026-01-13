@@ -100,7 +100,7 @@ export default function Home() {
               Blockchain
             </div>
             {[
-              { name: "Optimism Testnet", href: "/testnet", icon: "⚡", highlight: true },
+              { name: "Niche Network", href: "/testnet", icon: "⚡", highlight: true },
             ].map((link) => (
               <Link
                 key={link.name}
