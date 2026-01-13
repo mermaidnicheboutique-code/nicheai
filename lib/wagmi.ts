@@ -2,8 +2,32 @@ import { http, createConfig } from "wagmi";
 import { base, baseSepolia, mainnet } from "wagmi/chains";
 import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 
+// Define Niche Network (local Optimism testnet)
+const nicheNetwork = {
+  id: 901,
+  name: "Niche Network",
+  network: "niche-network",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Ether",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    default: {
+      http: ["http://localhost:8545"],
+    },
+    public: {
+      http: ["http://localhost:8545"],
+    },
+  },
+  blockExplorers: {
+    default: { name: "Niche Explorer", url: "" },
+  },
+  testnet: true,
+};
+
 export const config = createConfig({
-  chains: [base, baseSepolia, mainnet],
+  chains: [nicheNetwork, base, baseSepolia, mainnet],
   connectors: [
     coinbaseWallet({
       appName: "LUXBIN",

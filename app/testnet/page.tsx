@@ -2,14 +2,20 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useSwitchChain } from "wagmi";
 
 export default function TestnetPage() {
   const [isRunning, setIsRunning] = useState(false);
+  const { switchChain } = useSwitchChain();
 
   const handleStartTestnet = () => {
     setIsRunning(true);
     // In a real implementation, this would trigger the op-up command
     alert("To start the testnet, run these commands in your terminal:\n\ncurl https://raw.githubusercontent.com/ethereum-optimism/optimism/develop/op-up/install.sh | sh\nsource ~/.bashrc\nop-up");
+  };
+
+  const handleConnectNetwork = () => {
+    switchChain({ chainId: 901 });
   };
 
   return (
@@ -52,9 +58,15 @@ export default function TestnetPage() {
             </div>
             <button
               onClick={handleStartTestnet}
-              className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 px-6 py-3 rounded-lg font-semibold transition-all"
+              className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 px-6 py-3 rounded-lg font-semibold transition-all mb-2"
             >
               {isRunning ? "Testnet Running" : "Start Testnet"}
+            </button>
+            <button
+              onClick={handleConnectNetwork}
+              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 px-6 py-2 rounded-lg font-semibold transition-all text-sm"
+            >
+              Connect to Niche Network in Wallet
             </button>
           </div>
         </div>
