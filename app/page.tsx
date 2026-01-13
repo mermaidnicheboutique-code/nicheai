@@ -95,6 +95,23 @@ export default function Home() {
               </Link>
             ))}
 
+            {/* Blockchain Section Header */}
+            <div className="px-4 py-2 mt-4 text-xs font-bold text-green-400 uppercase tracking-wider">
+              Blockchain
+            </div>
+            {[
+              { name: "Optimism Testnet", href: "/testnet", icon: "⚡", highlight: true },
+            ].map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-green-500/20 to-blue-500/20 hover:from-green-500/30 hover:to-blue-500/30 border border-green-500/30 transition-all text-sm font-medium shadow-lg"
+              >
+                <span className="text-xl">{link.icon}</span>
+                <span>{link.name}</span>
+              </Link>
+            ))}
+
             {/* Platform Section Header */}
             <div className="px-4 py-2 mt-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
               Platform
