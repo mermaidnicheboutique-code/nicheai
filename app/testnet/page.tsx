@@ -22,6 +22,11 @@ export default function TestnetPage() {
         </Link>
 
         <div className="text-center mb-12">
+          <img
+            src="/nicho-network-logo.jpg"
+            alt="Niche Network Logo"
+            className="w-32 h-32 mx-auto mb-6 rounded-full border-4 border-purple-400 shadow-lg"
+          />
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
             Niche Network
           </h1>
