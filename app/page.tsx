@@ -9,7 +9,6 @@ import { AuroraChatWidget } from "@/components/FloatingChatWidget";
 import { AtlasChatWidget } from "@/components/AtlasChatWidget";
 import { TokenDeployer } from "@/components/TokenDeployer";
 import { NFTDeployer } from "@/components/NFTDeployer";
-import { CoinbasePaymasterStatus } from "@/components/CoinbasePaymasterStatus";
 import { DNABlockExplorer } from "@/components/DNABlockExplorer";
 import { TokenSelector } from "@/components/TokenSelector";
 import { NextGenToolsBadge, FeaturedOnSection, TryDemoButton } from "@/components/NextGenToolsBadge";
@@ -893,8 +892,6 @@ export default function Home() {
       <AuroraChatWidget />
       <AtlasChatWidget />
 
-      {/* Coinbase Paymaster Status Widget */}
-      <CoinbasePaymasterStatus />
     </div>
   );
 }
