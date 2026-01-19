@@ -201,12 +201,14 @@ const jsonLd = {
       "@type": "Product",
       name: "LUXBIN Token (LUX)",
       description: "Native token of the LUXBIN gasless Layer 1 blockchain",
+      image: `${SITE_URL}/nicheai-logo.jpg`,
       brand: {
         "@type": "Brand",
         name: "NicheAI",
       },
       offers: {
         "@type": "Offer",
+        price: "0",
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
       },
