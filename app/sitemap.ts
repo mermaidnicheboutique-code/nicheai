@@ -164,3 +164,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...resourcePages,
   ];
 }
+// Force redeploy Mon Jan 19 16:52:01 CST 2026
