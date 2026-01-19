@@ -5,8 +5,6 @@ import { BackgroundVideos } from "@/components/BackgroundVideos";
 import { LuxbinSwap } from "@/components/LuxbinSwap";
 import { CoinbaseOnramp } from "@/components/CoinbaseOnramp";
 import { LuxbinTokenLogoRotating, LuxbinTokenLogo } from "@/components/AnimatedTokenLogo";
-import { AuroraChatWidget } from "@/components/FloatingChatWidget";
-import { AtlasChatWidget } from "@/components/AtlasChatWidget";
 import { TokenDeployer } from "@/components/TokenDeployer";
 import { NFTDeployer } from "@/components/NFTDeployer";
 import { DNABlockExplorer } from "@/components/DNABlockExplorer";
@@ -91,12 +89,6 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Secondary Connect Wallet CTA */}
-            <div className="pt-4">
-              <div className="px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30">
-                <WalletButton />
-              </div>
-            </div>
 
             {/* Trust Badges */}
             <div className="pt-6 space-y-3">
@@ -887,10 +879,6 @@ export default function Home() {
         </footer>
         </div>
       </div>
-
-      {/* AI Chatbots - Aurora & Atlas */}
-      <AuroraChatWidget />
-      <AtlasChatWidget />
 
     </div>
   );

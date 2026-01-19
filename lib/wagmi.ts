@@ -27,11 +27,11 @@ const nicheNetwork = {
 };
 
 export const config = createConfig({
-  chains: [nicheNetwork, base, baseSepolia, mainnet],
+  chains: [base, baseSepolia, mainnet],
   connectors: [
     coinbaseWallet({
-      appName: "LUXBIN",
-      preference: "all",
+      appName: "NicheAI",
+      preference: "smartWalletOnly",
     }),
     injected({ shimDisconnect: true }),
     walletConnect({
