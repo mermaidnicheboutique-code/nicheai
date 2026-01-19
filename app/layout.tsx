@@ -263,3 +263,4 @@ export default function RootLayout({
     </html>
   );
 }
+// SEO URL fix deployment - Mon Jan 19 2026
