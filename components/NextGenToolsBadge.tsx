@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 
+const NXGN_LISTING_URL = "https://www.nxgntools.com/tools/nicheai?utm_source=nicheai";
+const NXGN_BADGE_URL = "https://www.nxgntools.com/api/embed/nicheai?type=FEATURED_ON";
+
 interface NextGenToolsBadgeProps {
   listingUrl?: string;
   variant?: "badge" | "card" | "floating";
@@ -9,30 +12,25 @@ interface NextGenToolsBadgeProps {
 }
 
 export function NextGenToolsBadge({
-  listingUrl = "https://nextgentools.io/tool/nicheai", // Update with your actual listing URL
+  listingUrl = NXGN_LISTING_URL,
   variant = "badge",
   className = ""
 }: NextGenToolsBadgeProps) {
 
+  // All variants now use the official NXGN badge
   if (variant === "floating") {
     return (
       <a
         href={listingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`fixed bottom-24 left-4 z-50 group ${className}`}
+        className={`fixed bottom-24 left-4 z-50 ${className}`}
       >
-        <div className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-xl border border-emerald-500/50 rounded-2xl p-4 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all hover:scale-105">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
-              NG
-            </div>
-            <div>
-              <div className="text-xs text-emerald-300 font-medium">Featured on</div>
-              <div className="text-sm font-bold text-white">NextGen Tools</div>
-            </div>
-          </div>
-        </div>
+        <img
+          src={NXGN_BADGE_URL}
+          alt="NextGen Tools Badge - The #1 AI Tools Directory & Launch Platform"
+          style={{ height: '48px', width: 'auto' }}
+        />
       </a>
     );
   }
@@ -43,43 +41,30 @@ export function NextGenToolsBadge({
         href={listingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`block group ${className}`}
+        className={`block ${className}`}
       >
-        <div className="bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-6 hover:border-emerald-500/50 transition-all hover:scale-[1.02] shadow-lg hover:shadow-emerald-500/20">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-emerald-500/30">
-              NG
-            </div>
-            <div className="flex-1">
-              <div className="text-sm text-emerald-300 font-medium mb-1">Featured on</div>
-              <div className="text-xl font-bold text-white mb-1">NextGen Tools</div>
-              <div className="text-xs text-gray-400">Discover the best AI & productivity tools</div>
-            </div>
-            <div className="text-emerald-400 group-hover:translate-x-1 transition-transform">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </div>
-          </div>
-        </div>
+        <img
+          src={NXGN_BADGE_URL}
+          alt="NextGen Tools Badge - The #1 AI Tools Directory & Launch Platform"
+          style={{ height: '54px', width: 'auto' }}
+        />
       </a>
     );
   }
 
-  // Default badge variant
+  // Default badge variant - uses official NXGN embed
   return (
     <a
       href={listingUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/50 rounded-xl hover:border-emerald-400 transition-all hover:shadow-lg hover:shadow-emerald-500/20 group ${className}`}
+      className={`inline-block ${className}`}
     >
-      <div className="w-6 h-6 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-xs">
-        NG
-      </div>
-      <span className="text-emerald-200 text-sm font-semibold group-hover:text-emerald-100">
-        Featured on NextGen Tools
-      </span>
+      <img
+        src={NXGN_BADGE_URL}
+        alt="NextGen Tools Badge - The #1 AI Tools Directory & Launch Platform"
+        style={{ height: '48px', width: 'auto' }}
+      />
     </a>
   );
 }
@@ -100,7 +85,7 @@ export function TryDemoButton({ className = "" }: { className?: string }) {
 }
 
 // Featured section component for landing page
-export function FeaturedOnSection({ listingUrl = "https://nextgentools.io/tool/nicheai" }: { listingUrl?: string }) {
+export function FeaturedOnSection({ listingUrl = NXGN_LISTING_URL }: { listingUrl?: string }) {
   return (
     <section className="relative px-6 py-12">
       <div className="max-w-6xl mx-auto">
@@ -110,24 +95,17 @@ export function FeaturedOnSection({ listingUrl = "https://nextgentools.io/tool/n
         </div>
 
         <div className="flex flex-wrap justify-center items-center gap-6">
-          {/* NextGen Tools Badge */}
+          {/* NextGen Tools Badge - Official Embed */}
           <a
             href={listingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group"
           >
-            <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-6 hover:border-emerald-500/50 transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/20 min-w-[200px]">
-              <div className="flex flex-col items-center gap-3">
-                <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-500/30">
-                  NG
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-white">NextGen Tools</div>
-                  <div className="text-xs text-emerald-300">Verified Tool</div>
-                </div>
-              </div>
-            </div>
+            <img
+              src={NXGN_BADGE_URL}
+              alt="NextGen Tools Badge - The #1 AI Tools Directory & Launch Platform"
+              style={{ height: '54px', width: 'auto' }}
+            />
           </a>
 
           {/* Coinbase Badge */}

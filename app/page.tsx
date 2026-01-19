@@ -95,7 +95,7 @@ export default function Home() {
               <a href="https://www.producthunt.com/products/nicheai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-nicheai" target="_blank" rel="noopener noreferrer" className="block">
                 <img alt="NicheAI - Quantum blockchain/ai compute and internet | Product Hunt" width="217" height="47" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064568&theme=dark&t=1768836537850" className="w-full" />
               </a>
-              <NextGenToolsBadge variant="badge" listingUrl="https://nextgentools.io/tool/nicheai" />
+              <NextGenToolsBadge variant="badge" />
             </div>
 
             {/* Quick Links Dropdown */}
@@ -185,7 +185,7 @@ export default function Home() {
               <a href="https://www.producthunt.com/products/nicheai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-nicheai" target="_blank" rel="noopener noreferrer">
                 <img alt="NicheAI on Product Hunt" width="200" height="43" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064568&theme=dark&t=1768836537850" />
               </a>
-              <NextGenToolsBadge variant="badge" listingUrl="https://nextgentools.io/tool/nicheai" />
+              <NextGenToolsBadge variant="badge" />
             </div>
           </div>
         </section>
@@ -826,7 +826,7 @@ export default function Home() {
         </section>
 
         {/* Featured On Section - For NextGen Tools TikTok Feature */}
-        <FeaturedOnSection listingUrl="https://nextgentools.io/tool/nicheai" />
+        <FeaturedOnSection />
 
         <footer className="relative px-6 py-12 border-t border-white/10">
           <div className="max-w-6xl mx-auto">

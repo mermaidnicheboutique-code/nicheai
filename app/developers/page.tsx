@@ -345,6 +345,7 @@ export default function DevelopersPage() {
               <div className="sticky top-24 space-y-3">
                 {[
                   { id: "quickstart", name: "Quick Start", icon: "🚀" },
+                  { id: "mcpserver", name: "MCP Server", icon: "🔌" },
                   { id: "codetranslation", name: "Code Translation", icon: "🌉" },
                   { id: "apikeys", name: "API Keys", icon: "🔑" },
                   { id: "examples", name: "Examples", icon: "💻" },
@@ -460,6 +461,275 @@ export default function DevelopersPage() {
                         <p className="text-gray-300 text-sm">Run the node and interact via Polkadot.js Apps - <strong>ZERO GAS FEES!</strong></p>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* MCP Server Tab */}
+            {activeTab === "mcpserver" && (
+              <div className="space-y-6">
+                <h2 className="text-3xl font-bold mb-8">🔌 MCP Server Integration</h2>
+
+                {/* Overview */}
+                <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-8 mb-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <img
+                      src="/nicheai-logo.jpg"
+                      alt="NicheAI Logo"
+                      className="w-16 h-16 rounded-xl object-cover"
+                    />
+                    <div>
+                      <h3 className="text-2xl font-bold">NicheAI MCP Server</h3>
+                      <p className="text-gray-400">Model Context Protocol Integration</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 mb-4">
+                    Connect Claude and other AI assistants to NicheAI's Light Language system, quantum blockchain features,
+                    and knowledge encoding capabilities through the Model Context Protocol (MCP).
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-black/30 rounded-xl p-4">
+                      <div className="text-purple-400 font-bold mb-2">Light Language</div>
+                      <div className="text-sm text-gray-400">Translate text into photonic color sequences</div>
+                    </div>
+                    <div className="bg-black/30 rounded-xl p-4">
+                      <div className="text-cyan-400 font-bold mb-2">Memory Storage</div>
+                      <div className="text-sm text-gray-400">Create and retrieve quantum-encoded memories</div>
+                    </div>
+                    <div className="bg-black/30 rounded-xl p-4">
+                      <div className="text-pink-400 font-bold mb-2">Blockchain Ready</div>
+                      <div className="text-sm text-gray-400">Convert memories to hex for on-chain storage</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connection URL */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 mb-6">
+                  <h3 className="text-2xl font-bold mb-4">🌐 Connection Endpoints</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-gray-400 text-sm mb-2">SSE Endpoint (for Claude Desktop)</p>
+                      <div className="bg-black/50 rounded-xl p-4 relative">
+                        <code className="text-green-300 font-mono">
+                          https://your-domain.ngrok-free.dev/sse
+                        </code>
+                        <button
+                          onClick={() => copyCode("https://your-domain.ngrok-free.dev/sse", "mcp-sse")}
+                          className="absolute top-2 right-2 px-3 py-1 bg-purple-600 hover:bg-purple-700 rounded text-xs"
+                        >
+                          {copiedCode === "mcp-sse" ? "✓ Copied" : "Copy"}
+                        </button>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-sm mb-2">Local Development</p>
+                      <div className="bg-black/50 rounded-xl p-4 relative">
+                        <code className="text-cyan-300 font-mono">
+                          http://localhost:3001/sse
+                        </code>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Available Tools */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 mb-6">
+                  <h3 className="text-2xl font-bold mb-4">🛠️ Available Tools</h3>
+                  <div className="space-y-4">
+                    <div className="bg-black/30 rounded-xl p-4 border border-purple-500/30">
+                      <h4 className="font-bold text-purple-300 mb-2">translate_to_light</h4>
+                      <p className="text-sm text-gray-400 mb-2">
+                        Translate text into Light Language (photonic sequences) based on semantic meaning.
+                      </p>
+                      <code className="text-xs text-gray-500 font-mono">
+                        Input: text, category (optional)
+                      </code>
+                    </div>
+
+                    <div className="bg-black/30 rounded-xl p-4 border border-cyan-500/30">
+                      <h4 className="font-bold text-cyan-300 mb-2">create_light_memory</h4>
+                      <p className="text-sm text-gray-400 mb-2">
+                        Create and store a Light Memory with energy levels and coherence metrics.
+                      </p>
+                      <code className="text-xs text-gray-500 font-mono">
+                        Input: text, category, emotionalResonance (optional)
+                      </code>
+                    </div>
+
+                    <div className="bg-black/30 rounded-xl p-4 border border-green-500/30">
+                      <h4 className="font-bold text-green-300 mb-2">get_light_memory / list_light_memories</h4>
+                      <p className="text-sm text-gray-400 mb-2">
+                        Retrieve stored light memories by ID or list all memories with optional filtering.
+                      </p>
+                    </div>
+
+                    <div className="bg-black/30 rounded-xl p-4 border border-orange-500/30">
+                      <h4 className="font-bold text-orange-300 mb-2">photonic_to_blockchain</h4>
+                      <p className="text-sm text-gray-400 mb-2">
+                        Convert a photonic sequence to hex format for blockchain storage.
+                      </p>
+                    </div>
+
+                    <div className="bg-black/30 rounded-xl p-4 border border-pink-500/30">
+                      <h4 className="font-bold text-pink-300 mb-2">analyze_color_meaning</h4>
+                      <p className="text-sm text-gray-400 mb-2">
+                        Get the meaning, wavelength, and frequency of any Light Language color.
+                      </p>
+                    </div>
+
+                    <div className="bg-black/30 rounded-xl p-4 border border-blue-500/30">
+                      <h4 className="font-bold text-blue-300 mb-2">quantum_chat</h4>
+                      <p className="text-sm text-gray-400 mb-2">
+                        Send messages to the NicheAI quantum-enhanced chat system.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Start */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 mb-6">
+                  <h3 className="text-2xl font-bold mb-4">🚀 Quick Start</h3>
+
+                  <div className="space-y-6">
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center font-bold">
+                        1
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Clone and Install</h4>
+                        <div className="bg-black/50 rounded-xl p-4 relative">
+                          <pre className="text-sm text-green-300">
+{`git clone https://github.com/mermaidnicheboutique-code/luxbin-chain.git
+cd nicheai
+npm install`}
+                          </pre>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center font-bold">
+                        2
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Start the MCP Server</h4>
+                        <div className="bg-black/50 rounded-xl p-4 relative">
+                          <pre className="text-sm text-green-300">
+{`# Start HTTP/SSE server
+npm run mcp:http
+
+# Or for stdio mode (Claude Code)
+npm run mcp`}
+                          </pre>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center font-bold">
+                        3
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Expose with ngrok (for HTTPS)</h4>
+                        <div className="bg-black/50 rounded-xl p-4 relative">
+                          <pre className="text-sm text-green-300">
+{`ngrok http 3001
+
+# Copy the https URL and add /sse
+# Example: https://abc123.ngrok-free.dev/sse`}
+                          </pre>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center font-bold">
+                        4
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold mb-2">Connect to Claude</h4>
+                        <p className="text-gray-300 text-sm">
+                          Add the HTTPS URL to Claude Desktop's MCP connector settings or your ~/.claude.json config.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Claude Desktop Config */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+                  <h3 className="text-2xl font-bold mb-4">⚙️ Claude Configuration</h3>
+
+                  <div className="mb-6">
+                    <p className="text-gray-400 text-sm mb-2">For Claude Desktop (claude_desktop_config.json)</p>
+                    <div className="bg-black/80 rounded-xl p-6 overflow-x-auto relative">
+                      <button
+                        onClick={() => copyCode(`{
+  "mcpServers": {
+    "nicheai": {
+      "url": "https://your-domain.ngrok-free.dev/sse"
+    }
+  }
+}`, "claude-config")}
+                        className="absolute top-4 right-4 px-3 py-1 bg-purple-600 hover:bg-purple-700 rounded text-sm"
+                      >
+                        {copiedCode === "claude-config" ? "✓ Copied" : "Copy"}
+                      </button>
+                      <pre className="text-sm text-green-300">
+{`{
+  "mcpServers": {
+    "nicheai": {
+      "url": "https://your-domain.ngrok-free.dev/sse"
+    }
+  }
+}`}
+                      </pre>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">For Claude Code (stdio mode in ~/.claude.json)</p>
+                    <div className="bg-black/80 rounded-xl p-6 overflow-x-auto relative">
+                      <button
+                        onClick={() => copyCode(`{
+  "mcpServers": {
+    "nicheai": {
+      "command": "npx",
+      "args": ["tsx", "/path/to/nicheai/mcp-server.ts"],
+      "cwd": "/path/to/nicheai"
+    }
+  }
+}`, "claude-code-config")}
+                        className="absolute top-4 right-4 px-3 py-1 bg-purple-600 hover:bg-purple-700 rounded text-sm"
+                      >
+                        {copiedCode === "claude-code-config" ? "✓ Copied" : "Copy"}
+                      </button>
+                      <pre className="text-sm text-cyan-300">
+{`{
+  "mcpServers": {
+    "nicheai": {
+      "command": "npx",
+      "args": ["tsx", "/path/to/nicheai/mcp-server.ts"],
+      "cwd": "/path/to/nicheai"
+    }
+  }
+}`}
+                      </pre>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 bg-green-500/20 border border-green-500/50 rounded-xl p-4">
+                    <p className="text-green-300 text-sm">
+                      🔗 <strong>GitHub Repository:</strong>{" "}
+                      <a
+                        href="https://github.com/mermaidnicheboutique-code/luxbin-chain"
+                        target="_blank"
+                        className="text-green-400 hover:underline"
+                      >
+                        mermaidnicheboutique-code/luxbin-chain
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>

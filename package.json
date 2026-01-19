@@ -6,13 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "mcp": "npx tsx mcp-server.ts",
+    "mcp:http": "npx tsx mcp-server.ts --http",
+    "mcp:build": "npx tsc mcp-server.ts --module nodenext --moduleResolution nodenext --esModuleInterop --skipLibCheck --outDir dist"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.3",
     "@coinbase/coinbase-sdk": "^0.25.0",
     "@coinbase/onchainkit": "1.1.2",
     "@langchain/core": "^0.3.28",
+    "@modelcontextprotocol/sdk": "^1.25.2",
     "@tailwindcss/postcss": "^4.1.18",
     "@tanstack/query-core": "^5.90.16",
     "@tanstack/react-query": "5.90.15",
@@ -38,7 +42,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "hardhat": "^3.1.2",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
-
