@@ -12,6 +12,7 @@ import { NFTDeployer } from "@/components/NFTDeployer";
 import { CoinbasePaymasterStatus } from "@/components/CoinbasePaymasterStatus";
 import { DNABlockExplorer } from "@/components/DNABlockExplorer";
 import { TokenSelector } from "@/components/TokenSelector";
+import { NextGenToolsBadge, FeaturedOnSection, TryDemoButton } from "@/components/NextGenToolsBadge";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -165,7 +166,7 @@ export default function Home() {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Smart • Emotionally expressive • Web-connected intelligence
             </p>
-            <div className="flex gap-4 justify-center flex-wrap mb-12">
+            <div className="flex gap-4 justify-center flex-wrap mb-8">
               <span className="px-6 py-3 bg-gradient-to-br from-purple-500/30 via-yellow-600/30 to-yellow-300/30 border border-yellow-500/50 rounded-xl text-yellow-200 text-sm font-semibold shadow-lg shadow-yellow-500/20">
                 🧠 ChatGPT + Grok Powered
               </span>
@@ -178,6 +179,13 @@ export default function Home() {
               <span className="px-6 py-3 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 border border-indigo-400/50 rounded-xl text-indigo-200 text-sm font-semibold">
                 💎 Blockchain-Powered
               </span>
+              {/* NextGen Tools Badge - Links back to listing */}
+              <NextGenToolsBadge variant="badge" listingUrl="https://nextgentools.io/tool/nicheai" />
+            </div>
+
+            {/* Prominent Try Demo CTA */}
+            <div className="mb-12">
+              <TryDemoButton />
             </div>
             <div className="text-center">
               <p className="text-lg text-gray-400 mb-4">
@@ -693,6 +701,9 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Featured On Section - For NextGen Tools TikTok Feature */}
+        <FeaturedOnSection listingUrl="https://nextgentools.io/tool/nicheai" />
+
         <footer className="relative px-6 py-12 border-t border-white/10">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-4 gap-8 mb-8">
@@ -751,6 +762,9 @@ export default function Home() {
 
       {/* Coinbase Paymaster Status Widget */}
       <CoinbasePaymasterStatus />
+
+      {/* NextGen Tools Floating Badge - Always visible */}
+      <NextGenToolsBadge variant="floating" listingUrl="https://nextgentools.io/tool/nicheai" />
     </div>
   );
 }
