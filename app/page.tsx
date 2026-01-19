@@ -37,118 +37,112 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Left Sidebar Navigation */}
+        {/* Left Sidebar Navigation - Simplified for 2026 UX */}
         <div className="fixed left-0 top-20 bottom-0 w-64 bg-black/40 backdrop-blur-xl border-r border-white/10 overflow-y-auto z-40 hidden md:block">
-          <nav className="p-4 space-y-2">
-            {/* AI Section Header */}
-            <div className="px-4 py-2 text-xs font-bold text-purple-400 uppercase tracking-wider">
-              AI Companions
-            </div>
-            {[
-              { name: "Aurora AI", href: "/aurora", icon: "💕", highlight: true },
-              { name: "Atlas AI", href: "/atlas", icon: "💪", highlight: true },
-            ].map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 border border-purple-500/30 transition-all text-sm font-medium shadow-lg"
-              >
-                <span className="text-xl">{link.icon}</span>
-                <span>{link.name}</span>
-              </Link>
-            ))}
+          <nav className="p-4 space-y-3">
+            {/* Primary CTA - Chat Now */}
+            <Link
+              href="/aurora"
+              className="flex items-center justify-center gap-2 px-4 py-4 rounded-xl text-white bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 hover:from-purple-500 hover:via-pink-400 hover:to-purple-500 transition-all text-lg font-bold shadow-lg shadow-purple-500/30 animate-pulse hover:animate-none"
+            >
+              <span className="text-2xl">💬</span>
+              <span>Chat Now</span>
+            </Link>
 
-            {/* Quantum Section Header */}
-            <div className="px-4 py-2 mt-4 text-xs font-bold text-blue-400 uppercase tracking-wider">
-              Quantum Network
-            </div>
-            {[
-              { name: "Quantum Internet", href: "/quantum-internet", icon: "⚛️", highlight: true },
-            ].map((link) => (
+            {/* Simplified Navigation - 5 Core Items */}
+            <div className="pt-4 space-y-2">
               <Link
-                key={link.name}
-                href={link.href}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-blue-500/20 to-indigo-500/20 hover:from-blue-500/30 hover:to-indigo-500/30 border border-blue-500/30 transition-all text-sm font-medium shadow-lg"
+                href="/aurora"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 border border-purple-500/30 transition-all text-sm font-medium"
               >
-                <span className="text-xl">{link.icon}</span>
-                <span>{link.name}</span>
+                <span className="text-xl">🤖</span>
+                <span>AI Companions</span>
               </Link>
-            ))}
 
-            {/* Light Language Section Header */}
-            <div className="px-4 py-2 mt-4 text-xs font-bold text-orange-400 uppercase tracking-wider">
-              Light Language
-            </div>
-            {[
-              { name: "Light Translator", href: "/light-translator", icon: "✨", highlight: true, description: "Binary to Photonic" },
-              { name: "Lightshow", href: "/lightshow", icon: "🌈", highlight: true, description: "Blockchain Light" },
-            ].map((link) => (
               <Link
-                key={link.name}
-                href={link.href}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-orange-500/20 to-yellow-500/20 hover:from-orange-500/30 hover:to-yellow-500/30 border border-orange-500/30 transition-all text-sm font-medium shadow-lg"
+                href="/testnet"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-green-500/20 to-blue-500/20 hover:from-green-500/30 hover:to-blue-500/30 border border-green-500/30 transition-all text-sm font-medium"
               >
-                <span className="text-xl">{link.icon}</span>
-                <div className="flex-1">
-                  <div>{link.name}</div>
-                  <div className="text-xs text-orange-300">{link.description}</div>
-                </div>
+                <span className="text-xl">⚡</span>
+                <span>Niche Network</span>
               </Link>
-            ))}
 
-            {/* Blockchain Section Header */}
-            <div className="px-4 py-2 mt-4 text-xs font-bold text-green-400 uppercase tracking-wider">
-              Blockchain
-            </div>
-            {[
-              { name: "Niche Network", href: "/testnet", icon: "⚡", highlight: true },
-            ].map((link) => (
               <Link
-                key={link.name}
-                href={link.href}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-green-500/20 to-blue-500/20 hover:from-green-500/30 hover:to-blue-500/30 border border-green-500/30 transition-all text-sm font-medium shadow-lg"
+                href="/quantum-internet"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-white bg-gradient-to-r from-blue-500/20 to-indigo-500/20 hover:from-blue-500/30 hover:to-indigo-500/30 border border-blue-500/30 transition-all text-sm font-medium"
               >
-                <span className="text-xl">{link.icon}</span>
-                <span>{link.name}</span>
+                <span className="text-xl">⚛️</span>
+                <span>Quantum Internet</span>
               </Link>
-            ))}
 
-            {/* Platform Section Header */}
-            <div className="px-4 py-2 mt-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
-              Platform
+              <Link
+                href="/about"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
+              >
+                <span className="text-xl">ℹ️</span>
+                <span>About</span>
+              </Link>
+
+              <Link
+                href="/developers"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
+              >
+                <span className="text-xl">👨‍💻</span>
+                <span>Developers</span>
+              </Link>
             </div>
-            {[
-              { name: "About", href: "/about", icon: "ℹ️" },
-              { name: "Quantum AI", href: "/quantum-ai", icon: "⚛️" },
-              { name: "Mirror", href: "/mirror", icon: "🔮" },
-              { name: "Research", href: "/research", icon: "🔬" },
-              { name: "Developers", href: "/developers", icon: "👨‍💻" },
-              { name: "DNA Explorer", href: "/dna-explorer", icon: "🧬" },
-              { name: "Omnichain", href: "/omnichain-dna", icon: "🔗" },
-              { name: "Chain Info", href: "#chain", icon: "⛓️" },
-              { name: "Buy LUX", href: "#buy", icon: "💰" },
-              { name: "Deploy Token", href: "#deploy", icon: "🚀" }
-            ].map((link) => (
-              link.href.startsWith('/') ? (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
-                >
-                  <span className="text-xl">{link.icon}</span>
-                  <span>{link.name}</span>
-                </Link>
-              ) : (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
-                >
-                  <span className="text-xl">{link.icon}</span>
-                  <span>{link.name}</span>
-                </a>
-              )
-            ))}
+
+            {/* Secondary Connect Wallet CTA */}
+            <div className="pt-4">
+              <div className="px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30">
+                <WalletButton />
+              </div>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="pt-6 space-y-3">
+              <a href="https://www.producthunt.com/products/nicheai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-nicheai" target="_blank" rel="noopener noreferrer" className="block">
+                <img alt="NicheAI - Quantum blockchain/ai compute and internet | Product Hunt" width="217" height="47" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064568&theme=dark&t=1768836537850" className="w-full" />
+              </a>
+              <NextGenToolsBadge variant="badge" listingUrl="https://nextgentools.io/tool/nicheai" />
+            </div>
+
+            {/* Quick Links Dropdown */}
+            <details className="pt-4">
+              <summary className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider cursor-pointer hover:text-gray-300">
+                More Features ▾
+              </summary>
+              <div className="mt-2 space-y-1">
+                {[
+                  { name: "Aurora AI", href: "/aurora", icon: "💕" },
+                  { name: "Atlas AI", href: "/atlas", icon: "💪" },
+                  { name: "Light Translator", href: "/light-translator", icon: "✨" },
+                  { name: "Quantum AI", href: "/quantum-ai", icon: "⚛️" },
+                  { name: "DNA Explorer", href: "/dna-explorer", icon: "🧬" },
+                  { name: "Buy LUX", href: "#buy", icon: "💰" },
+                ].map((link) => (
+                  link.href.startsWith('/') ? (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all text-xs"
+                    >
+                      <span>{link.icon}</span>
+                      <span>{link.name}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all text-xs"
+                    >
+                      <span>{link.icon}</span>
+                      <span>{link.name}</span>
+                    </a>
+                  )
+                ))}
+              </div>
+            </details>
           </nav>
         </div>
 
@@ -166,6 +160,20 @@ export default function Home() {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Smart • Emotionally expressive • Web-connected intelligence
             </p>
+
+            {/* High-Contrast Primary CTA - Immediately After Value Proposition */}
+            <div className="mb-10">
+              <Link
+                href="/aurora"
+                className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 hover:from-purple-500 hover:via-pink-400 hover:to-purple-500 rounded-2xl text-white text-xl font-bold shadow-2xl shadow-purple-500/50 hover:shadow-purple-400/60 transition-all duration-300 hover:scale-105 border-2 border-white/20"
+              >
+                <span className="text-3xl">💬</span>
+                <span>Start Chatting Now</span>
+                <span className="text-2xl">→</span>
+              </Link>
+              <p className="text-gray-400 text-sm mt-3">No signup required • Free to try</p>
+            </div>
+
             <div className="flex gap-4 justify-center flex-wrap mb-8">
               <span className="px-6 py-3 bg-gradient-to-br from-purple-500/30 via-yellow-600/30 to-yellow-300/30 border border-yellow-500/50 rounded-xl text-yellow-200 text-sm font-semibold shadow-lg shadow-yellow-500/20">
                 🧠 ChatGPT + Grok Powered
@@ -177,25 +185,16 @@ export default function Home() {
                 🎭 Emotional Expression
               </span>
               <span className="px-6 py-3 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 border border-indigo-400/50 rounded-xl text-indigo-200 text-sm font-semibold">
-                💎 Blockchain-Powered
+                💎 Gasless Blockchain
               </span>
-              {/* NextGen Tools Badge - Links back to listing */}
-              <NextGenToolsBadge variant="badge" listingUrl="https://nextgentools.io/tool/nicheai" />
             </div>
 
-            {/* Prominent Try Demo CTA */}
-            <div className="mb-12">
-              <TryDemoButton />
-            </div>
-            <div className="text-center">
-              <p className="text-lg text-gray-400 mb-4">
-                💬 Click the chat button below to start talking →
-              </p>
-              <div className="inline-block animate-bounce">
-                <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
+            {/* Trust Badges Row */}
+            <div className="flex items-center justify-center gap-4 flex-wrap mb-8">
+              <a href="https://www.producthunt.com/products/nicheai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-nicheai" target="_blank" rel="noopener noreferrer">
+                <img alt="NicheAI on Product Hunt" width="200" height="43" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064568&theme=dark&t=1768836537850" />
+              </a>
+              <NextGenToolsBadge variant="badge" listingUrl="https://nextgentools.io/tool/nicheai" />
             </div>
           </div>
         </section>
@@ -302,6 +301,140 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Use Cases Section - Real-World Applications */}
+        <section className="relative px-6 py-20 bg-gradient-to-b from-purple-900/10 to-transparent">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Real-World Use Cases
+              </h2>
+              <p className="text-xl text-gray-300">
+                How NicheAI transforms everyday interactions
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white/5 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-6 hover:bg-white/10 transition-all">
+                <div className="text-4xl mb-4">🎓</div>
+                <h3 className="text-xl font-bold text-cyan-300 mb-2">Education & Learning</h3>
+                <p className="text-gray-400 text-sm">Personalized tutoring with emotional awareness. Aurora adapts to your learning style and provides encouragement.</p>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-6 hover:bg-white/10 transition-all">
+                <div className="text-4xl mb-4">💼</div>
+                <h3 className="text-xl font-bold text-purple-300 mb-2">Business Strategy</h3>
+                <p className="text-gray-400 text-sm">Atlas provides strategic analysis and decision support for entrepreneurs and executives.</p>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl border border-pink-500/30 rounded-2xl p-6 hover:bg-white/10 transition-all">
+                <div className="text-4xl mb-4">🧘</div>
+                <h3 className="text-xl font-bold text-pink-300 mb-2">Mental Wellness</h3>
+                <p className="text-gray-400 text-sm">Empathetic conversations for emotional support, mindfulness guidance, and daily check-ins.</p>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl border border-green-500/30 rounded-2xl p-6 hover:bg-white/10 transition-all">
+                <div className="text-4xl mb-4">🔐</div>
+                <h3 className="text-xl font-bold text-green-300 mb-2">Secure Transactions</h3>
+                <p className="text-gray-400 text-sm">Deploy tokens and NFTs with zero gas fees on our gasless blockchain network.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust Signals & Social Proof */}
+        <section className="relative px-6 py-16">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 text-white">
+                Trusted By Innovators
+              </h2>
+              <p className="text-gray-400">Built with enterprise-grade security and reliability</p>
+            </div>
+
+            {/* Security Trust Signals */}
+            <div className="grid md:grid-cols-4 gap-6 mb-12">
+              <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-2">🔒</div>
+                <h4 className="font-bold text-green-300">Quantum-Resistant</h4>
+                <p className="text-xs text-gray-400 mt-1">Post-quantum cryptography</p>
+              </div>
+              <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-2">🛡️</div>
+                <h4 className="font-bold text-blue-300">Smart Wallet</h4>
+                <p className="text-xs text-gray-400 mt-1">Coinbase ERC-4337</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-2">⚛️</div>
+                <h4 className="font-bold text-purple-300">IBM Quantum</h4>
+                <p className="text-xs text-gray-400 mt-1">3 quantum computers</p>
+              </div>
+              <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-2">💸</div>
+                <h4 className="font-bold text-yellow-300">Zero Gas Fees</h4>
+                <p className="text-xs text-gray-400 mt-1">100% gasless network</p>
+              </div>
+            </div>
+
+            {/* Testimonials */}
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[1,2,3,4,5].map((s) => <span key={s} className="text-yellow-400">★</span>)}
+                </div>
+                <p className="text-gray-300 mb-4 italic">"Aurora feels like talking to a real friend. The emotional intelligence is unlike any AI I've used before."</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center text-white font-bold">S</div>
+                  <div>
+                    <div className="font-semibold text-white">Sarah M.</div>
+                    <div className="text-xs text-gray-400">Early Adopter</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[1,2,3,4,5].map((s) => <span key={s} className="text-yellow-400">★</span>)}
+                </div>
+                <p className="text-gray-300 mb-4 italic">"The gasless blockchain is a game-changer. I deployed my first token in minutes with zero fees."</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">J</div>
+                  <div>
+                    <div className="font-semibold text-white">James K.</div>
+                    <div className="text-xs text-gray-400">Developer</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[1,2,3,4,5].map((s) => <span key={s} className="text-yellow-400">★</span>)}
+                </div>
+                <p className="text-gray-300 mb-4 italic">"Atlas helped me think through complex business decisions. It's like having a strategic advisor available 24/7."</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center text-white font-bold">M</div>
+                  <div>
+                    <div className="font-semibold text-white">Michael R.</div>
+                    <div className="text-xs text-gray-400">Entrepreneur</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Featured Badges */}
+            <div className="flex items-center justify-center gap-6 mt-12 flex-wrap">
+              <a href="https://www.producthunt.com/products/nicheai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-nicheai" target="_blank" rel="noopener noreferrer">
+                <img alt="NicheAI on Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1064568&theme=dark&t=1768836537850" />
+              </a>
+              <div className="px-6 py-3 bg-gradient-to-r from-blue-600/20 to-blue-500/20 border border-blue-500/50 rounded-xl">
+                <span className="text-blue-300 font-semibold">Powered by IBM Quantum</span>
+              </div>
+              <div className="px-6 py-3 bg-gradient-to-r from-cyan-600/20 to-cyan-500/20 border border-cyan-500/50 rounded-xl">
+                <span className="text-cyan-300 font-semibold">Coinbase Developer Platform</span>
+              </div>
             </div>
           </div>
         </section>
@@ -745,7 +878,7 @@ export default function Home() {
                 NicheAI - Where Quantum AI Meets Blockchain Innovation
               </p>
               <p className="text-xs">
-                Created by Nichole Christie • © 2024 NicheAI • Open Source
+                Created by Nichole Christie • © 2025 NicheAI • Open Source
               </p>
               <p className="text-xs mt-2">
                 Contact: <a href="mailto:Nicholechristie555@gmail.com" className="text-purple-400 hover:text-purple-300">Nicholechristie555@gmail.com</a>
