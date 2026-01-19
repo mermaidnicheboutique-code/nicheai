@@ -895,9 +895,6 @@ export default function Home() {
 
       {/* Coinbase Paymaster Status Widget */}
       <CoinbasePaymasterStatus />
-
-      {/* NextGen Tools Floating Badge - Always visible */}
-      <NextGenToolsBadge variant="floating" listingUrl="https://nextgentools.io/tool/nicheai" />
     </div>
   );
 }
