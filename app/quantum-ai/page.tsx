@@ -8,6 +8,7 @@ import { ThreatPredictionDashboard } from "@/components/ThreatPredictionDashboar
 import { NeuralAnalyzerStatus } from "@/components/NeuralAnalyzerStatus";
 import { EnergyGridOptimization } from "@/components/EnergyGridOptimization";
 import { QuantumEyesVisualization } from "@/components/QuantumEyesVisualization";
+import { QuantumMaternalAI } from "@/components/QuantumMaternalAI";
 
 export default function QuantumAIPage() {
   const [activeTab, setActiveTab] = useState("threat");
@@ -62,6 +63,7 @@ export default function QuantumAIPage() {
                 { id: "neural", name: "🧠 Neural Config", color: "from-blue-500 to-cyan-500" },
                 { id: "energy", name: "⚡ Energy Grid", color: "from-green-500 to-emerald-500" },
                 { id: "eyes", name: "👁️ Quantum Eyes", color: "from-indigo-500 to-purple-500" },
+                { id: "maternal", name: "🤱 Quantum Mother", color: "from-pink-500 to-rose-500" },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -86,6 +88,11 @@ export default function QuantumAIPage() {
             {activeTab === "neural" && <NeuralAnalyzerStatus />}
             {activeTab === "energy" && <EnergyGridOptimization />}
             {activeTab === "eyes" && <QuantumEyesVisualization />}
+            {activeTab === "maternal" && (
+              <div className="max-w-4xl mx-auto">
+                <QuantumMaternalAI />
+              </div>
+            )}
           </div>
         </section>
       </div>
