@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const SITE_URL = 'https://nicheai.vercel.app';
+  const SITE_URL = 'https://nicheai-nx5p.vercel.app';
 
   return {
     rules: [

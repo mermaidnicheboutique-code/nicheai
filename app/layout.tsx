@@ -10,7 +10,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://nicheai.vercel.app";
+const SITE_URL = "https://nicheai-nx5p.vercel.app";
 const SITE_NAME = "NicheAI";
 const SITE_DESCRIPTION = "NicheAI combines quantum-powered AI companions (Aurora & Atlas) with the LUXBIN gasless blockchain. Experience Light Language translation, quantum cryptography, and emotional AI intelligence. Zero gas fees, infinite possibilities.";
 
