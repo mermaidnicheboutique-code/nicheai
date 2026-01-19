@@ -120,7 +120,7 @@ export const metadata: Metadata = {
 
   // Verification (add your actual verification codes)
   verification: {
-    google: "your-google-verification-code", // Replace with actual code from Google Search Console
+    google: "google5f97aa0960b84bb3"
     // yandex: "your-yandex-code",
     // bing: "your-bing-code",
   },
