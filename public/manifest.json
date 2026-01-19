@@ -1,20 +1,40 @@
 {
-  "name": "Luxbin - Quantum-Secured Blockchain",
-  "short_name": "Luxbin",
-  "description": "Quantum-secured blockchain with zero-fee transactions on Base",
+  "name": "NicheAI - Quantum AI & Blockchain Platform",
+  "short_name": "NicheAI",
+  "description": "NicheAI combines quantum-powered AI companions with the LUXBIN gasless blockchain. Experience niche technology: Light Language, quantum cryptography, and emotional AI.",
   "start_url": "/",
+  "id": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#8B5CF6",
+  "background_color": "#0a0a0f",
+  "theme_color": "#667eea",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en-US",
-  "categories": ["finance", "productivity"],
+  "dir": "ltr",
+  "categories": ["finance", "productivity", "utilities", "lifestyle"],
+  "keywords": "niche, NicheAI, quantum AI, quantum internet, quantum blockchain, blockchain, LUXBIN, LUX token, gasless, crypto, AI companions, Aurora, Atlas, quantum network, quantum communication, decentralized AI",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/nicheai-logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/nicheai-logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "label": "NicheAI Platform"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }
