@@ -6,6 +6,23 @@ NicheAI is a revolutionary platform combining quantum-powered AI companions with
 
 🌐 **Live Demo**: [https://luxbin-app.vercel.app](https://luxbin-app.vercel.app)
 
+## 📊 Language Statistics
+
+This repository contains code in multiple programming languages:
+
+- **TypeScript**: 36,107 files (45.4%)
+- **JavaScript**: 42,625 files (53.6%)
+- **JSON**: 4,838 files (6.1%)
+- **Markdown**: 1,891 files (2.4%)
+- **TypeScript React**: 523 files (0.7%)
+- **Solidity**: 231 files (0.3%)
+- **HTML**: 95 files (0.1%)
+- **Rust**: 45 files (0.1%)
+- **Python**: 24 files (0.0%)
+- **CSS**: 19 files (0.0%)
+
+*Total files analyzed: 79,606*
+
 ## 🌟 What is NicheAI?
 
 NicheAI is the application layer of a comprehensive quantum-blockchain ecosystem that includes:
