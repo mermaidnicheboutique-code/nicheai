@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign OP Atlas Verification Message</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .message {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            margin: 20px 0;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 5px;
+            display: none;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            color: #721c24;
+            display: none;
+        }
+        .copy-btn {
+            background: #28a745;
+            margin-left: 10px;
+        }
+        .copy-btn:hover {
+            background: #218838;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .status.info { background: #d1ecf1; color: #0c5460; }
+        .status.warning { background: #fff3cd; color: #856404; }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OP Atlas Retro Funding Verification</h1>
+
+        <div id="status" class="status info">
+            Status: Ready to connect wallet
+        </div>
+
+        <p>This tool will help you sign the verification message for your OP Atlas retro funding application.</p>
+
+        <div class="message">
+            <strong>Message to sign:</strong><br>
+            "I verify that my contracts are for Project 0x647deb523381917ea613c4a9e4f35c516402793a0bba4826f59eb6c5efb27a73 and I'm an optimist."
+        </div>
+
+        <p><strong>Your deployer wallet:</strong> 0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe</p>
+
+        <button id="connectBtn" onclick="connectWallet()">🔗 Connect Wallet</button>
+        <button id="signBtn" onclick="signMessage()" disabled>✍️ Sign Message</button>
+
+        <div id="result" class="result">
+            <strong>✅ Signature Generated!</strong><br>
+            <strong>Signature:</strong><br>
+            <textarea id="signature" rows="3" cols="80" readonly style="width: 100%; font-family: monospace;"></textarea>
+            <button class="copy-btn" onclick="copySignature()">📋 Copy Signature</button>
+            <br><br>
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Copy the signature above</li>
+                <li>Go to your OP Atlas retro funding application</li>
+                <li>Paste this signature in the "Deployer Signature" field</li>
+                <li>Submit your application</li>
+            </ol>
+        </div>
+
+        <div id="error" class="error">
+            <strong>Error:</strong> <span id="errorMsg"></span>
+        </div>
+    </div>
+
+    <script>
+        let web3;
+        let accounts = [];
+        let isConnected = false;
+
+        const message = "I verify that my contracts are for Project 0x647deb523381917ea613c4a9e4f35c516402793a0bba4826f59eb6c5efb27a73 and I'm an optimist.";
+
+        function updateStatus(message, type = 'info') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = `Status: ${message}`;
+            statusEl.className = `status ${type}`;
+        }
+
+        async function connectWallet() {
+            try {
+                updateStatus('Connecting to wallet...', 'info');
+
+                if (typeof window.ethereum === 'undefined') {
+                    throw new Error('MetaMask or compatible wallet not detected. Please install MetaMask from https://metamask.io/');
+                }
+
+                // Request account access
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+                // Create Web3 instance
+                web3 = new Web3(window.ethereum);
+
+                // Get accounts
+                accounts = await web3.eth.getAccounts();
+
+                if (!accounts || accounts.length === 0) {
+                    throw new Error('No accounts found. Please unlock your wallet.');
+                }
+
+                const connectedAddress = accounts[0];
+                updateStatus(`Connected: ${connectedAddress.substring(0, 6)}...${connectedAddress.substring(38)}`, 'success');
+
+                document.getElementById('connectBtn').disabled = true;
+                document.getElementById('connectBtn').textContent = `✅ Connected: ${connectedAddress.substring(0, 6)}...${connectedAddress.substring(38)}`;
+                document.getElementById('signBtn').disabled = false;
+                isConnected = true;
+
+                // Check if connected wallet matches deployer
+                const expectedAddress = '0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe'.toLowerCase();
+                if (connectedAddress.toLowerCase() !== expectedAddress) {
+                    updateStatus(`⚠️ Warning: Connected wallet (${connectedAddress.substring(0, 6)}...) does not match your deployer address. Please connect with ${expectedAddress.substring(0, 6)}...`, 'warning');
+                } else {
+                    updateStatus(`✅ Connected with correct deployer wallet`, 'success');
+                }
+
+            } catch (error) {
+                console.error('Connection error:', error);
+                updateStatus(`❌ Connection failed: ${error.message}`, 'error');
+                showError(error.message);
+            }
+        }
+
+        async function signMessage() {
+            if (!isConnected || !accounts.length) {
+                showError('Please connect your wallet first');
+                return;
+            }
+
+            try {
+                updateStatus('Requesting signature from wallet...', 'info');
+
+                // Use the standard eth_sign method instead of personal_sign
+                const signature = await web3.eth.sign(message, accounts[0]);
+
+                document.getElementById('signature').value = signature;
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('error').style.display = 'none';
+                updateStatus('✅ Signature generated successfully!', 'success');
+
+            } catch (error) {
+                console.error('Signing error:', error);
+                updateStatus(`❌ Signing failed: ${error.message}`, 'error');
+                showError('Failed to sign message: ' + error.message);
+            }
+        }
+
+        function copySignature() {
+            const signature = document.getElementById('signature').value;
+            navigator.clipboard.writeText(signature).then(() => {
+                updateStatus('📋 Signature copied to clipboard!', 'success');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = signature;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                updateStatus('📋 Signature copied to clipboard!', 'success');
+            });
+        }
+
+        function showError(message) {
+            document.getElementById('errorMsg').textContent = message;
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+        }
+
+        // Check if wallet is already connected on page load
+        window.addEventListener('load', async () => {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                    if (accounts.length > 0) {
+                        connectWallet();
+                    }
+                } catch (error) {
+                    console.log('No existing connection');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

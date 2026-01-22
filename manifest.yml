@@ -1,0 +1,11 @@
+---
+applications:
+- name: nicheai-quantum
+  memory: 512M
+  instances: 1
+  buildpack: nodejs_buildpack
+  command: npm start
+  env:
+    NODE_ENV: production
+    QUANTUM_AI_URL: https://your-quantum-ai-url-here
+  services: []

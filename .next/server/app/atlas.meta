@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/atlas/layout,_N_T_/atlas/page,_N_T_/atlas"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/atlas/__PAGE__",
+    "/atlas",
+    "/_index",
+    "/_head"
+  ]
+}

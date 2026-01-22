@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "functions": {
+    "/api/quantum-blockchain/status": {},
+    "/api/quantum-internet/operations/bell-state": {},
+    "/api/quantum-internet/operations/random": {},
+    "/api/quantum-internet/operations/superdense-coding": {},
+    "/api/quantum-internet/operations/teleportation": {},
+    "/api/quantum-internet/status": {}
+  }
+}

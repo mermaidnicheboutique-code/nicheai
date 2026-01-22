@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign OP Atlas Verification Message</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .message {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 5px;
+            display: none;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            color: #721c24;
+            display: none;
+        }
+        .copy-btn {
+            background: #28a745;
+            margin-left: 10px;
+        }
+        .copy-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OP Atlas Retro Funding Verification</h1>
+
+        <p>This tool will help you sign the verification message for your OP Atlas retro funding application.</p>
+
+        <div class="message">
+            <strong>Message to sign:</strong><br>
+            "I verify that my contracts are for Project 0x647deb523381917ea613c4a9e4f35c516402793a0bba4826f59eb6c5efb27a73 and I'm an optimist."
+        </div>
+
+        <p><strong>Your deployer wallet:</strong> 0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe</p>
+
+        <button id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
+        <button id="signBtn" onclick="signMessage()" disabled>Sign Message</button>
+
+        <div id="result" class="result">
+            <strong>✅ Signature Generated!</strong><br>
+            <strong>Signature:</strong> <span id="signature"></span>
+            <button class="copy-btn" onclick="copySignature()">Copy Signature</button>
+            <br><br>
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Copy the signature above</li>
+                <li>Go to your OP Atlas retro funding application</li>
+                <li>Paste this signature in the "Deployer Signature" field</li>
+                <li>Submit your application</li>
+            </ol>
+        </div>
+
+        <div id="error" class="error">
+            <strong>Error:</strong> <span id="errorMsg"></span>
+        </div>
+    </div>
+
+    <script>
+        let web3;
+        let accounts = [];
+
+        const message = "I verify that my contracts are for Project 0x647deb523381917ea613c4a9e4f35c516402793a0bba4826f59eb6c5efb27a73 and I'm an optimist.";
+
+        async function connectWallet() {
+            try {
+                if (typeof window.ethereum !== 'undefined') {
+                    web3 = new Web3(window.ethereum);
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    accounts = await web3.eth.getAccounts();
+
+                    document.getElementById('connectBtn').disabled = true;
+                    document.getElementById('connectBtn').textContent = `Connected: ${accounts[0].substring(0, 6)}...${accounts[0].substring(38)}`;
+                    document.getElementById('signBtn').disabled = false;
+
+                    // Check if connected wallet matches deployer
+                    if (accounts[0].toLowerCase() !== '0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe'.toLowerCase()) {
+                        showError('Warning: Connected wallet does not match your deployer address. Please connect with 0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe');
+                    }
+                } else {
+                    showError('MetaMask or compatible wallet not detected. Please install MetaMask.');
+                }
+            } catch (error) {
+                showError('Failed to connect wallet: ' + error.message);
+            }
+        }
+
+        async function signMessage() {
+            try {
+                const signature = await web3.eth.personal.sign(message, accounts[0]);
+
+                document.getElementById('signature').textContent = signature;
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('error').style.display = 'none';
+
+            } catch (error) {
+                showError('Failed to sign message: ' + error.message);
+            }
+        }
+
+        function copySignature() {
+            const signature = document.getElementById('signature').textContent;
+            navigator.clipboard.writeText(signature).then(() => {
+                alert('Signature copied to clipboard!');
+            });
+        }
+
+        function showError(message) {
+            document.getElementById('errorMsg').textContent = message;
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

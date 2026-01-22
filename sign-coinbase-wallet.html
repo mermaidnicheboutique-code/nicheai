@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign with Coinbase Smart Wallet</title>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        h1 {
+            color: #0052ff;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+        }
+        .message-box {
+            background: rgba(0,82,255,0.1);
+            padding: 20px;
+            border-left: 4px solid #0052ff;
+            margin: 20px 0;
+            font-family: monospace;
+            word-break: break-all;
+            border-radius: 0 8px 8px 0;
+        }
+        .wallet-info {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        button {
+            background: #0052ff;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 5px 10px 0;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #0040cc;
+            transform: translateY(-1px);
+        }
+        button:disabled {
+            background: #444;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-secondary {
+            background: #333;
+        }
+        .btn-secondary:hover {
+            background: #444;
+        }
+        .btn-success {
+            background: #00c853;
+        }
+        .btn-success:hover {
+            background: #00a844;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0,200,83,0.1);
+            border: 1px solid rgba(0,200,83,0.3);
+            border-radius: 8px;
+            display: none;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255,82,82,0.1);
+            border: 1px solid rgba(255,82,82,0.3);
+            border-radius: 8px;
+            display: none;
+        }
+        textarea {
+            width: 100%;
+            font-family: monospace;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #1a1a2e;
+            color: #0f0;
+            resize: vertical;
+        }
+        .status {
+            margin: 15px 0;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .status.info { background: rgba(0,82,255,0.2); }
+        .status.warning { background: rgba(255,193,7,0.2); color: #ffc107; }
+        .status.success { background: rgba(0,200,83,0.2); color: #00c853; }
+        .status.error { background: rgba(255,82,82,0.2); color: #ff5252; }
+        .providers {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        .provider-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: rgba(255,255,255,0.1);
+        }
+        .provider-badge.detected {
+            background: rgba(0,200,83,0.2);
+            color: #00c853;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔵 Coinbase Smart Wallet Signer</h1>
+        <p class="subtitle">OP Atlas Retro Funding Verification</p>
+
+        <div id="status" class="status info">
+            Detecting wallet providers...
+        </div>
+
+        <div id="providers" class="providers"></div>
+
+        <div class="message-box">
+            <strong>Message to sign:</strong><br><br>
+            "I verify that my contracts are for Project 0x647deb523381917ea613c4a9e4f35c516402793a0bba4826f59eb6c5efb27a73 and I'm an optimist."
+        </div>
+
+        <div class="wallet-info">
+            <strong>Target deployer wallet:</strong><br>
+            <code>0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe</code>
+        </div>
+
+        <div id="connectionSection">
+            <button id="connectCoinbaseBtn" onclick="connectCoinbase()">🔵 Connect Coinbase Wallet</button>
+            <button id="connectMetaMaskBtn" onclick="connectMetaMask()" class="btn-secondary">🦊 Connect MetaMask</button>
+            <button id="connectAnyBtn" onclick="connectAny()" class="btn-secondary">🔗 Auto-detect Wallet</button>
+        </div>
+
+        <div id="signSection" style="display:none; margin-top: 20px;">
+            <button id="signBtn" onclick="signMessage()" class="btn-success">✍️ Sign Message</button>
+            <button onclick="disconnect()" class="btn-secondary">Disconnect</button>
+        </div>
+
+        <div id="result" class="result">
+            <strong>✅ Signature Generated!</strong><br><br>
+            <strong>Signature Hash:</strong><br>
+            <textarea id="signature" rows="4" readonly></textarea>
+            <br><br>
+            <button onclick="copySignature()" class="btn-success">📋 Copy Signature</button>
+            <br><br>
+            <strong>Next Steps:</strong>
+            <ol>
+                <li>Copy the signature above</li>
+                <li>Go to your OP Atlas application</li>
+                <li>Paste in the "Deployer Signature" field</li>
+                <li>Submit your verification</li>
+            </ol>
+        </div>
+
+        <div id="error" class="error">
+            <strong>❌ Error:</strong> <span id="errorMsg"></span>
+        </div>
+    </div>
+
+    <script>
+        let provider = null;
+        let signer = null;
+        let connectedAddress = null;
+
+        const MESSAGE = "I verify that my contracts are for Project 0x647deb523381917ea613c4a9e4f35c516402793a0bba4826f59eb6c5efb27a73 and I'm an optimist.";
+        const TARGET_ADDRESS = "0xe1Ba7479eD38bF73B9c8c543959c78cA6EDC97fe".toLowerCase();
+
+        function updateStatus(message, type = 'info') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+        }
+
+        function showError(message) {
+            document.getElementById('errorMsg').textContent = message;
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+            updateStatus('❌ ' + message, 'error');
+        }
+
+        function detectProviders() {
+            const providersEl = document.getElementById('providers');
+            const providers = [];
+
+            // Check for various wallet providers
+            if (window.ethereum) {
+                if (window.ethereum.isCoinbaseWallet) {
+                    providers.push({ name: 'Coinbase Wallet', detected: true });
+                }
+                if (window.ethereum.isMetaMask) {
+                    providers.push({ name: 'MetaMask', detected: true });
+                }
+                if (window.ethereum.providers) {
+                    // Multiple providers (EIP-6963)
+                    window.ethereum.providers.forEach(p => {
+                        if (p.isCoinbaseWallet) providers.push({ name: 'Coinbase (multi)', detected: true });
+                        if (p.isMetaMask) providers.push({ name: 'MetaMask (multi)', detected: true });
+                    });
+                }
+                if (providers.length === 0) {
+                    providers.push({ name: 'Generic Web3', detected: true });
+                }
+            }
+
+            if (window.coinbaseWalletExtension) {
+                providers.push({ name: 'Coinbase Extension', detected: true });
+            }
+
+            if (providers.length === 0) {
+                providersEl.innerHTML = '<span class="provider-badge">No wallet detected</span>';
+                updateStatus('⚠️ No wallet extension detected. Please install Coinbase Wallet.', 'warning');
+            } else {
+                providersEl.innerHTML = providers.map(p =>
+                    `<span class="provider-badge ${p.detected ? 'detected' : ''}">${p.detected ? '✓' : '✗'} ${p.name}</span>`
+                ).join('');
+                updateStatus('Wallet detected! Click a button to connect.', 'info');
+            }
+        }
+
+        function getProvider() {
+            // Try to get Coinbase Wallet specifically
+            if (window.ethereum?.providers) {
+                const coinbase = window.ethereum.providers.find(p => p.isCoinbaseWallet);
+                if (coinbase) return coinbase;
+            }
+            if (window.ethereum?.isCoinbaseWallet) {
+                return window.ethereum;
+            }
+            if (window.coinbaseWalletExtension) {
+                return window.coinbaseWalletExtension;
+            }
+            return window.ethereum;
+        }
+
+        function getMetaMaskProvider() {
+            if (window.ethereum?.providers) {
+                const mm = window.ethereum.providers.find(p => p.isMetaMask && !p.isCoinbaseWallet);
+                if (mm) return mm;
+            }
+            if (window.ethereum?.isMetaMask) {
+                return window.ethereum;
+            }
+            return null;
+        }
+
+        async function connectCoinbase() {
+            try {
+                updateStatus('Connecting to Coinbase Wallet...', 'info');
+
+                const cbProvider = getProvider();
+                if (!cbProvider) {
+                    throw new Error('Coinbase Wallet not found. Please install the Coinbase Wallet extension.');
+                }
+
+                await cbProvider.request({ method: 'eth_requestAccounts' });
+                provider = new ethers.providers.Web3Provider(cbProvider);
+                signer = provider.getSigner();
+                connectedAddress = await signer.getAddress();
+
+                onConnected('Coinbase Wallet');
+            } catch (error) {
+                console.error('Coinbase connection error:', error);
+                showError(error.message);
+            }
+        }
+
+        async function connectMetaMask() {
+            try {
+                updateStatus('Connecting to MetaMask...', 'info');
+
+                const mmProvider = getMetaMaskProvider();
+                if (!mmProvider) {
+                    throw new Error('MetaMask not found. Please install MetaMask extension.');
+                }
+
+                await mmProvider.request({ method: 'eth_requestAccounts' });
+                provider = new ethers.providers.Web3Provider(mmProvider);
+                signer = provider.getSigner();
+                connectedAddress = await signer.getAddress();
+
+                onConnected('MetaMask');
+            } catch (error) {
+                console.error('MetaMask connection error:', error);
+                showError(error.message);
+            }
+        }
+
+        async function connectAny() {
+            try {
+                updateStatus('Auto-detecting wallet...', 'info');
+
+                if (!window.ethereum) {
+                    throw new Error('No wallet detected. Please install Coinbase Wallet or MetaMask.');
+                }
+
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                signer = provider.getSigner();
+                connectedAddress = await signer.getAddress();
+
+                const walletName = window.ethereum.isCoinbaseWallet ? 'Coinbase Wallet' :
+                                   window.ethereum.isMetaMask ? 'MetaMask' : 'Web3 Wallet';
+                onConnected(walletName);
+            } catch (error) {
+                console.error('Connection error:', error);
+                showError(error.message);
+            }
+        }
+
+        function onConnected(walletName) {
+            const shortAddr = `${connectedAddress.substring(0, 6)}...${connectedAddress.substring(38)}`;
+
+            document.getElementById('connectionSection').style.display = 'none';
+            document.getElementById('signSection').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+
+            if (connectedAddress.toLowerCase() === TARGET_ADDRESS) {
+                updateStatus(`✅ Connected with ${walletName}: ${shortAddr} (Correct deployer wallet!)`, 'success');
+            } else {
+                updateStatus(`⚠️ Connected: ${shortAddr} - This is NOT your deployer wallet (${TARGET_ADDRESS.substring(0,8)}...)`, 'warning');
+            }
+        }
+
+        function disconnect() {
+            provider = null;
+            signer = null;
+            connectedAddress = null;
+            document.getElementById('connectionSection').style.display = 'block';
+            document.getElementById('signSection').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+            updateStatus('Disconnected. Click to reconnect.', 'info');
+        }
+
+        async function signMessage() {
+            if (!signer) {
+                showError('Please connect your wallet first');
+                return;
+            }
+
+            try {
+                updateStatus('Please approve the signature request in your wallet...', 'info');
+
+                // Use signMessage for EIP-191 personal_sign
+                const signature = await signer.signMessage(MESSAGE);
+
+                document.getElementById('signature').value = signature;
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('error').style.display = 'none';
+                updateStatus('✅ Signature generated successfully!', 'success');
+
+            } catch (error) {
+                console.error('Signing error:', error);
+                if (error.code === 4001 || error.code === 'ACTION_REJECTED') {
+                    showError('Signature request was rejected. Please try again.');
+                } else {
+                    showError('Failed to sign: ' + (error.message || error));
+                }
+            }
+        }
+
+        function copySignature() {
+            const sig = document.getElementById('signature').value;
+            navigator.clipboard.writeText(sig).then(() => {
+                updateStatus('📋 Signature copied to clipboard!', 'success');
+            }).catch(() => {
+                document.getElementById('signature').select();
+                document.execCommand('copy');
+                updateStatus('📋 Signature copied to clipboard!', 'success');
+            });
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            detectProviders();
+
+            // Listen for account changes
+            if (window.ethereum) {
+                window.ethereum.on('accountsChanged', (accounts) => {
+                    if (accounts.length === 0) {
+                        disconnect();
+                    } else {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/dev/keys/[id]",
+      "regex": "^/api/dev/keys/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/dev/keys/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/api/ai/learn",
+      "regex": "^/api/ai/learn(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/ai/learn(?:/)?$"
+    },
+    {
+      "page": "/api/ai/proactive",
+      "regex": "^/api/ai/proactive(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/ai/proactive(?:/)?$"
+    },
+    {
+      "page": "/api/chat",
+      "regex": "^/api/chat(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/chat(?:/)?$"
+    },
+    {
+      "page": "/api/coinbase/session",
+      "regex": "^/api/coinbase/session(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/coinbase/session(?:/)?$"
+    },
+    {
+      "page": "/api/coinbase/sponsor",
+      "regex": "^/api/coinbase/sponsor(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/coinbase/sponsor(?:/)?$"
+    },
+    {
+      "page": "/api/dev/keys",
+      "regex": "^/api/dev/keys(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/dev/keys(?:/)?$"
+    },
+    {
+      "page": "/api/health",
+      "regex": "^/api/health(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/health(?:/)?$"
+    },
+    {
+      "page": "/api/knowledge",
+      "regex": "^/api/knowledge(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/knowledge(?:/)?$"
+    },
+    {
+      "page": "/api/memory/deploy-contract",
+      "regex": "^/api/memory/deploy\\-contract(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/memory/deploy\\-contract(?:/)?$"
+    },
+    {
+      "page": "/api/memory/infinite",
+      "regex": "^/api/memory/infinite(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/memory/infinite(?:/)?$"
+    },
+    {
+      "page": "/api/memory/mindmap",
+      "regex": "^/api/memory/mindmap(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/memory/mindmap(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-blockchain/status",
+      "regex": "^/api/quantum\\-blockchain/status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-blockchain/status(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-chat",
+      "regex": "^/api/quantum\\-chat(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-chat(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-internet/operations/bell-state",
+      "regex": "^/api/quantum\\-internet/operations/bell\\-state(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-internet/operations/bell\\-state(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-internet/operations/random",
+      "regex": "^/api/quantum\\-internet/operations/random(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-internet/operations/random(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-internet/operations/superdense-coding",
+      "regex": "^/api/quantum\\-internet/operations/superdense\\-coding(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-internet/operations/superdense\\-coding(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-internet/operations/teleportation",
+      "regex": "^/api/quantum\\-internet/operations/teleportation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-internet/operations/teleportation(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-internet/status",
+      "regex": "^/api/quantum\\-internet/status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-internet/status(?:/)?$"
+    },
+    {
+      "page": "/api/quantum-status",
+      "regex": "^/api/quantum\\-status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/quantum\\-status(?:/)?$"
+    },
+    {
+      "page": "/api/v1/light-language/binary",
+      "regex": "^/api/v1/light\\-language/binary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/light\\-language/binary(?:/)?$"
+    },
+    {
+      "page": "/api/v1/light-language/colors",
+      "regex": "^/api/v1/light\\-language/colors(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/light\\-language/colors(?:/)?$"
+    },
+    {
+      "page": "/api/v1/light-language/memory",
+      "regex": "^/api/v1/light\\-language/memory(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/light\\-language/memory(?:/)?$"
+    },
+    {
+      "page": "/api/v1/light-language/translate",
+      "regex": "^/api/v1/light\\-language/translate(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/light\\-language/translate(?:/)?$"
+    },
+    {
+      "page": "/api/v1/translate-code",
+      "regex": "^/api/v1/translate\\-code(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/translate\\-code(?:/)?$"
+    },
+    {
+      "page": "/atlas",
+      "regex": "^/atlas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/atlas(?:/)?$"
+    },
+    {
+      "page": "/aurora",
+      "regex": "^/aurora(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/aurora(?:/)?$"
+    },
+    {
+      "page": "/brand-kit",
+      "regex": "^/brand\\-kit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/brand\\-kit(?:/)?$"
+    },
+    {
+      "page": "/coinbase-test",
+      "regex": "^/coinbase\\-test(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/coinbase\\-test(?:/)?$"
+    },
+    {
+      "page": "/create-character",
+      "regex": "^/create\\-character(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/create\\-character(?:/)?$"
+    },
+    {
+      "page": "/developers",
+      "regex": "^/developers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/developers(?:/)?$"
+    },
+    {
+      "page": "/dna-explorer",
+      "regex": "^/dna\\-explorer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dna\\-explorer(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/light-translator",
+      "regex": "^/light\\-translator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/light\\-translator(?:/)?$"
+    },
+    {
+      "page": "/lightshow",
+      "regex": "^/lightshow(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/lightshow(?:/)?$"
+    },
+    {
+      "page": "/mirror",
+      "regex": "^/mirror(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/mirror(?:/)?$"
+    },
+    {
+      "page": "/omnichain-dna",
+      "regex": "^/omnichain\\-dna(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/omnichain\\-dna(?:/)?$"
+    },
+    {
+      "page": "/quantum-ai",
+      "regex": "^/quantum\\-ai(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/quantum\\-ai(?:/)?$"
+    },
+    {
+      "page": "/quantum-blockchain",
+      "regex": "^/quantum\\-blockchain(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/quantum\\-blockchain(?:/)?$"
+    },
+    {
+      "page": "/quantum-internet",
+      "regex": "^/quantum\\-internet(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/quantum\\-internet(?:/)?$"
+    },
+    {
+      "page": "/research",
+      "regex": "^/research(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/research(?:/)?$"
+    },
+    {
+      "page": "/showcase",
+      "regex": "^/showcase(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/showcase(?:/)?$"
+    },
+    {
+      "page": "/smart-wallet-demo",
+      "regex": "^/smart\\-wallet\\-demo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/smart\\-wallet\\-demo(?:/)?$"
+    },
+    {
+      "page": "/terms",
+      "regex": "^/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms(?:/)?$"
+    },
+    {
+      "page": "/testnet",
+      "regex": "^/testnet(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/testnet(?:/)?$"
+    },
+    {
+      "page": "/translator",
+      "regex": "^/translator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/translator(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}
