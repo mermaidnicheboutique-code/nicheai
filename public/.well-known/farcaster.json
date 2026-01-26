@@ -1,0 +1,27 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "frame": {
+    "version": "next",
+    "name": "NicheAI",
+    "subtitle": "AI-Powered Platform",
+    "description": "NicheAI - Advanced AI ecosystem with intelligent agents and seamless blockchain integration.",
+    "iconUrl": "https://nicheai.vercel.app/icon.jpg",
+    "splashImageUrl": "https://nicheai.vercel.app/icon.jpg",
+    "splashBackgroundColor": "#2d1b4e",
+    "homeUrl": "https://nicheai.vercel.app",
+    "webhookUrl": "https://nicheai.vercel.app/api/webhooks/coinbase",
+    "primaryCategory": "developer-tools",
+    "tags": ["ai", "blockchain", "web3", "agents", "crypto"],
+    "tagline": "AI-Powered Web3 Platform",
+    "ogTitle": "NicheAI Platform",
+    "ogDescription": "Advanced AI ecosystem with intelligent agents and blockchain integration.",
+    "ogImageUrl": "https://nicheai.vercel.app/icon.jpg",
+    "heroImageUrl": "https://nicheai.vercel.app/icon.jpg",
+    "screenshotUrls": [],
+    "noindex": false
+  }
+}
