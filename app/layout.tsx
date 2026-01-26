@@ -130,7 +130,7 @@ export const metadata: Metadata = {
 
   // Other
   other: {
-    'base:app_id': '695963dcc63ad876c9081f62',
+    'base:app_id': '6977a35a3a92926b661fd6d3',
   },
 };
 
