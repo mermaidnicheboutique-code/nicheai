@@ -245,6 +245,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/wallet/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/wallet">> = Specific
+  const handler = {} as typeof import("../../app/wallet/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/.well-known/farcaster.json/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/.well-known/farcaster.json">> = Specific
+  const handler = {} as typeof import("../../app/.well-known/farcaster.json/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/api/ai/learn/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/ai/learn">> = Specific
@@ -465,6 +483,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/v1/translate-code">> = Specific
   const handler = {} as typeof import("../../app/api/v1/translate-code/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/api/webhooks/coinbase/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/webhooks/coinbase">> = Specific
+  const handler = {} as typeof import("../../app/api/webhooks/coinbase/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/video-sitemap.xml/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/video-sitemap.xml">> = Specific
+  const handler = {} as typeof import("../../app/video-sitemap.xml/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

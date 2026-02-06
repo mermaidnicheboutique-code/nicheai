@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/lib/providers";
 import { AuroraChatWidget } from "@/components/FloatingChatWidget";
 import { AtlasChatWidget } from "@/components/AtlasChatWidget";
+import { MiniKitReady } from "@/components/MiniKitReady";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -130,7 +131,19 @@ export const metadata: Metadata = {
 
   // Other
   other: {
-    'base:app_id': '6977a35a3a92926b661fd6d3',
+    'base:app_id': '695963dcc63ad876c9081f62',
+    'fc:miniapp': JSON.stringify({
+      version: 'next',
+      imageUrl: 'https://nicheai-nx5p.vercel.app/nicheai-logo.jpg',
+      button: {
+        title: 'Launch NicheAI',
+        action: {
+          type: 'launch_miniapp',
+          name: 'NicheAI',
+          url: 'https://nicheai-nx5p.vercel.app',
+        },
+      },
+    }),
   },
 };
 
@@ -257,6 +270,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased font-sans`}>
         <Providers>
+          <MiniKitReady />
           {children}
           <AuroraChatWidget />
           <AtlasChatWidget />

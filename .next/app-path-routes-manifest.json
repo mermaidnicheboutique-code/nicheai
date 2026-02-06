@@ -1,4 +1,5 @@
 {
+  "/.well-known/farcaster.json/route": "/.well-known/farcaster.json",
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
   "/about/page": "/about",
@@ -27,6 +28,7 @@
   "/api/v1/light-language/memory/route": "/api/v1/light-language/memory",
   "/api/v1/light-language/translate/route": "/api/v1/light-language/translate",
   "/api/v1/translate-code/route": "/api/v1/translate-code",
+  "/api/webhooks/coinbase/route": "/api/webhooks/coinbase",
   "/atlas/page": "/atlas",
   "/aurora/page": "/aurora",
   "/brand-kit/page": "/brand-kit",
@@ -44,9 +46,13 @@
   "/quantum-blockchain/page": "/quantum-blockchain",
   "/quantum-internet/page": "/quantum-internet",
   "/research/page": "/research",
+  "/robots.txt/route": "/robots.txt",
   "/showcase/page": "/showcase",
+  "/sitemap.xml/route": "/sitemap.xml",
   "/smart-wallet-demo/page": "/smart-wallet-demo",
   "/terms/page": "/terms",
   "/testnet/page": "/testnet",
-  "/translator/page": "/translator"
+  "/translator/page": "/translator",
+  "/video-sitemap.xml/route": "/video-sitemap.xml",
+  "/wallet/page": "/wallet"
 }

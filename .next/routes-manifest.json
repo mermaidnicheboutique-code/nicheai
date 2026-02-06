@@ -50,6 +50,12 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/.well-known/farcaster.json",
+      "regex": "^/\\.well\\-known/farcaster\\.json(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/\\.well\\-known/farcaster\\.json(?:/)?$"
+    },
+    {
       "page": "/about",
       "regex": "^/about(?:/)?$",
       "routeKeys": {},
@@ -200,6 +206,12 @@
       "namedRegex": "^/api/v1/translate\\-code(?:/)?$"
     },
     {
+      "page": "/api/webhooks/coinbase",
+      "regex": "^/api/webhooks/coinbase(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/webhooks/coinbase(?:/)?$"
+    },
+    {
       "page": "/atlas",
       "regex": "^/atlas(?:/)?$",
       "routeKeys": {},
@@ -296,10 +308,22 @@
       "namedRegex": "^/research(?:/)?$"
     },
     {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
       "page": "/showcase",
       "regex": "^/showcase(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/showcase(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
     },
     {
       "page": "/smart-wallet-demo",
@@ -324,6 +348,18 @@
       "regex": "^/translator(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/translator(?:/)?$"
+    },
+    {
+      "page": "/video-sitemap.xml",
+      "regex": "^/video\\-sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/video\\-sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/wallet",
+      "regex": "^/wallet(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/wallet(?:/)?$"
     }
   ],
   "dataRoutes": [],

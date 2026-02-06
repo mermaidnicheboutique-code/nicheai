@@ -13,8 +13,12 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.3",
+    "@coinbase/cdp-core": "^0.0.78",
+    "@coinbase/cdp-hooks": "^0.0.78",
+    "@coinbase/cdp-react": "^0.0.78",
     "@coinbase/coinbase-sdk": "^0.25.0",
     "@coinbase/onchainkit": "1.1.2",
+    "@farcaster/miniapp-sdk": "^0.2.1",
     "@langchain/core": "^0.3.28",
     "@modelcontextprotocol/sdk": "^1.25.2",
     "@tailwindcss/postcss": "^4.1.18",

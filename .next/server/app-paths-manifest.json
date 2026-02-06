@@ -1,4 +1,5 @@
 {
+  "/.well-known/farcaster.json/route": "app/.well-known/farcaster.json/route.js",
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
@@ -27,6 +28,7 @@
   "/api/v1/light-language/memory/route": "app/api/v1/light-language/memory/route.js",
   "/api/v1/light-language/translate/route": "app/api/v1/light-language/translate/route.js",
   "/api/v1/translate-code/route": "app/api/v1/translate-code/route.js",
+  "/api/webhooks/coinbase/route": "app/api/webhooks/coinbase/route.js",
   "/atlas/page": "app/atlas/page.js",
   "/aurora/page": "app/aurora/page.js",
   "/brand-kit/page": "app/brand-kit/page.js",
@@ -44,9 +46,13 @@
   "/quantum-blockchain/page": "app/quantum-blockchain/page.js",
   "/quantum-internet/page": "app/quantum-internet/page.js",
   "/research/page": "app/research/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
   "/showcase/page": "app/showcase/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/smart-wallet-demo/page": "app/smart-wallet-demo/page.js",
   "/terms/page": "app/terms/page.js",
   "/testnet/page": "app/testnet/page.js",
-  "/translator/page": "app/translator/page.js"
+  "/translator/page": "app/translator/page.js",
+  "/video-sitemap.xml/route": "app/video-sitemap.xml/route.js",
+  "/wallet/page": "app/wallet/page.js"
 }
