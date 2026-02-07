@@ -2,8 +2,12 @@
 
 import { SignIn, SignOutButton, FundModal, type FundModalProps } from "@coinbase/cdp-react";
 import { useIsSignedIn, useEvmAddress, useSolanaAddress } from "@coinbase/cdp-hooks";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { getBuyOptions, createBuyQuote } from "@/lib/onramp-api";
+
+const LUX_TOKEN = "0xF4DA1F7fA3Df8e9F41E4c709AB2B7C716668b40b";
+const LUX_SALE = "0xe517CAF14B483b3B25F4d0D7443A044D10445e3B";
+const BASE_RPC = "https://mainnet.base.org";
 
 export function EmbeddedWalletAuth() {
   const { isSignedIn } = useIsSignedIn();
@@ -27,6 +31,25 @@ function EmbeddedWalletDashboard() {
   const { evmAddress } = useEvmAddress();
   const { solanaAddress } = useSolanaAddress();
   const [fundSuccess, setFundSuccess] = useState(false);
+  const [luxBalance, setLuxBalance] = useState<string>("0");
+  const [buyAmount, setBuyAmount] = useState("");
+  const [buying, setBuying] = useState(false);
+  const [buyResult, setBuyResult] = useState("");
+
+  useEffect(() => {
+    if (!evmAddress) return;
+    fetch(`${BASE_RPC}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jsonrpc: "2.0", id: 1, method: "eth_call",
+        params: [{ to: LUX_TOKEN, data: "0x70a08231000000000000000000000000" + evmAddress.slice(2) }, "latest"]
+      })
+    }).then(r => r.json()).then(d => {
+      const bal = BigInt(d.result || "0x0");
+      setLuxBalance((Number(bal) / 1e18).toLocaleString(undefined, { maximumFractionDigits: 2 }));
+    }).catch(() => {});
+  }, [evmAddress, buyResult]);
 
   const fetchBuyQuote: FundModalProps["fetchBuyQuote"] = useCallback(async (params) => {
     return createBuyQuote(params);
@@ -132,6 +155,63 @@ function EmbeddedWalletDashboard() {
             Buy ETH on Base
           </button>
         </FundModal>
+      </div>
+
+      {/* Buy LUX Tokens */}
+      <div style={{
+        marginTop: "24px",
+        padding: "20px",
+        background: "linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.15))",
+        border: "1px solid rgba(255, 215, 0, 0.3)",
+        borderRadius: "12px",
+      }}>
+        <h3 style={{ fontSize: "16px", fontWeight: "600", marginBottom: "8px", color: "#ffd700" }}>
+          Buy LUX Tokens
+        </h3>
+        <p style={{ fontSize: "13px", color: "#999", marginBottom: "12px" }}>
+          LUXBIN Quantum Token on Base. Rate: 100,000 LUX per ETH.
+        </p>
+
+        <div style={{ padding: "8px 12px", background: "rgba(255,215,0,0.1)", borderRadius: "8px", marginBottom: "12px", fontSize: "13px" }}>
+          Your LUX Balance: <strong style={{ color: "#ffd700" }}>{luxBalance} LUX</strong>
+        </div>
+
+        {buyResult && (
+          <div style={{ padding: "8px 12px", background: "rgba(255,215,0,0.15)", borderRadius: "8px", marginBottom: "12px", fontSize: "13px", color: "#ffd700" }}>
+            {buyResult}
+          </div>
+        )}
+
+        <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
+          {["0.001", "0.005", "0.01"].map(amt => (
+            <button key={amt} onClick={() => setBuyAmount(amt)} style={{
+              flex: 1, padding: "8px", borderRadius: "6px", fontSize: "12px", cursor: "pointer",
+              background: buyAmount === amt ? "rgba(255,215,0,0.3)" : "rgba(255,255,255,0.05)",
+              border: buyAmount === amt ? "1px solid #ffd700" : "1px solid rgba(255,255,255,0.1)",
+              color: "#fff",
+            }}>
+              {amt} ETH<br/><span style={{ fontSize: "10px", color: "#999" }}>{(parseFloat(amt) * 100000).toLocaleString()} LUX</span>
+            </button>
+          ))}
+        </div>
+
+        <a
+          href={`https://basescan.org/address/${LUX_SALE}#writeContract#F1`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "block", width: "100%", padding: "14px", borderRadius: "8px",
+            background: "linear-gradient(90deg, #ffd700, #ff8c00)", color: "#000",
+            border: "none", cursor: "pointer", fontWeight: "600", fontSize: "15px",
+            textAlign: "center", textDecoration: "none",
+          }}
+        >
+          Buy LUX on BaseScan
+        </a>
+
+        <p style={{ fontSize: "11px", color: "#666", marginTop: "8px", textAlign: "center" }}>
+          Contract: <a href={`https://basescan.org/token/${LUX_TOKEN}`} target="_blank" rel="noopener noreferrer" style={{ color: "#ffd700" }}>{LUX_TOKEN.slice(0, 10)}...{LUX_TOKEN.slice(-8)}</a>
+        </p>
       </div>
 
       <div style={{ marginTop: "24px" }}>
