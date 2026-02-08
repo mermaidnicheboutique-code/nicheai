@@ -1,6 +1,8 @@
 .env
 .vercel
 .env*.local
+.next
+node_modules
 
 # Quantum Wallet Security - Sensitive Files
 recovery_kit_*.json
