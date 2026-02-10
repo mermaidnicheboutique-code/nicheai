@@ -1,7 +1,7 @@
 import { SignJWT, importPKCS8 } from "jose";
 import crypto from "crypto";
 
-export const ONRAMP_API_BASE_URL = "https://api.developer.coinbase.com/onramp";
+export const ONRAMP_API_BASE_URL = "https://api.developer.coinbase.com";
 
 export function getCDPCredentials() {
   const keyId = process.env.CDP_API_KEY_ID;

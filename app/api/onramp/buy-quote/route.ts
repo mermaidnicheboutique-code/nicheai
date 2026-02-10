@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     const jwt = await generateCDPJWT({
       requestMethod: "POST",
       requestHost: new URL(ONRAMP_API_BASE_URL).hostname,
-      requestPath: "/v1/buy/quote",
+      requestPath: "/onramp/v1/buy/quote",
     });
 
     const requestBody = {
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       destinationAddress: body.destinationAddress,
     };
 
-    const response = await fetch(`${ONRAMP_API_BASE_URL}/v1/buy/quote`, {
+    const response = await fetch(`${ONRAMP_API_BASE_URL}/onramp/v1/buy/quote`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${jwt}`,

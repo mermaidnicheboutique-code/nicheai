@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     if (networks) queryParams.append("networks", networks);
 
     const queryString = queryParams.toString();
-    const apiPath = "/v1/buy/options";
+    const apiPath = "/onramp/v1/buy/options";
     const fullPath = apiPath + (queryString ? `?${queryString}` : "");
 
     const jwt = await generateCDPJWT({
